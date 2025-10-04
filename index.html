@@ -20,6 +20,8 @@
                         'lisa-cyan': '#62b6cb', 
                         // Un fond très clair, parfait pour les cartes ou les sections
                         'lisa-bg-light': '#e8f0f8', 
+                        // Couleur secondaire plus neutre pour l'équilibre
+                        'lisa-gray': '#5a7d9a',
                     },
                 }
             }
@@ -31,7 +33,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body class="antialiased">
+<body class="antialiased font-sans">
 
     <div id="root"></div>
 
@@ -39,11 +41,31 @@
         const { useState } = React;
         const { createRoot } = ReactDOM;
 
+        // ✅ CORRECTION : Chemins mis à jour pour pointer vers la racine du dépôt GitHub
+        const LOGO_ENSA = "./ENSAFES_logo20230124155030.png";
+        const LOGO_LISA = "./images.jpeg"; 
+        const LOGO_USMBA = "./download.jpeg";
+
+        // Icons SVG pour la navigation
+        const Icon = ({ id, className = "w-5 h-5" }) => {
+            const icons = {
+                about: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041.025M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25zm0 7.5h.008v.008H12v-.008z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9" /></svg>,
+                program: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 14.25h.008v.008H12v-.008zM12 18h.008v.008H12v-.008z" /></svg>,
+                speakers: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a.75.75 0 001.06-.06l2.25-2.25c.29-.29.4-.69.29-1.06v-.388c-.11-.37-.29-.71-.5-1.0l-1.63-2.73a4.5 4.5 0 00-4.04-2.25H9.25a4.5 4.5 0 00-4.04 2.25l-1.63 2.73c-.2.29-.39.63-.5 1.0v.388c.11.37.22.77.29 1.06l2.25 2.25a.75.75 0 001.06.06L12 15.75l2.44 3.03z" /></svg>,
+                committees: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5 1a1 1 0 10-2 0 1 1 0 002 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 22.5v-2.25a4.5 4.5 0 00-4.5-4.5h-9a4.5 4.5 0 00-4.5 4.5v2.25" /></svg>,
+                calls: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.25a4.5 4.5 0 00-4.5-4.5H9.75M16.5 13.5l1.5-1.5m0 0l-1.5-1.5" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75H5.25A2.25 2.25 0 013 16.5v-13.5A2.25 2.25 0 015.25 1.5h13.5A2.25 2.25 0 0121 3.75v5.25m-8.25 11.25l-4.5-4.5" /></svg>,
+                info: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 100 1.5.75.75 0 000-1.5zm0 3.75a.75.75 0 100 1.5.75.75 0 000-1.5zm0 3.75a.75.75 0 100 1.5.75.75 0 000-1.5z" /><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 12a8.25 8.25 0 11-16.5 0 8.25 8.25 0 0116.5 0z" /></svg>,
+                register: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>,
+                contact: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v.009c-1.37 0-2.48.51-3.23.94l-5.7 3.99c-.64.45-1.42.45-2.06 0l-5.7-3.99A4.3 4.3 0 002.25 6.76V6.75h19.5zM21.75 12v-4.5M2.25 12v-4.5" /><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 6.75V19.5a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25V6.75" /></svg>,
+            };
+            return icons[id] || null;
+        };
+
         // Fonction pour un bouton standard (réutilisable)
         const PrimaryButton = ({ children, className = '', onClick = () => {} }) => (
             <button 
                 onClick={onClick}
-                className={`inline-flex items-center rounded-xl bg-lisa-dark px-4 py-2 text-sm font-semibold text-white shadow hover:bg-lisa-cyan transition ${className}`}
+                className={`inline-flex items-center rounded-xl bg-lisa-dark px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-lisa-cyan transition transform hover:scale-[1.02] ${className}`}
             >
                 {children}
             </button>
@@ -52,7 +74,7 @@
         // Composant pour la section de contenu (sans ID d'ancrage car c'est une vue par onglet)
         const ContentSection = ({ title, children }) => (
             <section className="py-8 sm:py-12">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-6 sm:p-8 rounded-xl shadow-2xl border-t-4 border-lisa-cyan/50">
                     <h2 className="text-3xl font-black text-lisa-dark mb-6 border-b-2 border-lisa-cyan pb-2">
                         {title}
                     </h2>
@@ -63,119 +85,203 @@
             </section>
         );
 
+        // Composant pour la barre latérale de l'événement et les logos
+        const EventSidebar = () => (
+            <div className="lg:w-1/4 space-y-8 p-6 bg-lisa-bg-light rounded-xl shadow-inner hidden lg:block h-fit sticky top-20">
+                <div className="text-center">
+                    <h3 className="text-xl font-bold text-lisa-dark border-b pb-2 mb-3">
+                        Détails de l'Événement
+                    </h3>
+                    <p className="text-lg font-semibold text-lisa-dark">10 Décembre 2025</p>
+                    <p className="text-gray-600">ENSA Fès</p>
+                    <p className="text-gray-600">9h00 – 17h30</p>
+                    <PrimaryButton className="mt-4 w-full bg-lisa-cyan hover:bg-lisa-dark">
+                        S'inscrire
+                    </PrimaryButton>
+                </div>
+                
+                <div className="space-y-4 pt-4 border-t border-lisa-dark/10">
+                    <h3 className="text-xl font-bold text-lisa-dark text-center">
+                        Organisateurs & Partenaires
+                    </h3>
+                    <div className="flex flex-col items-center justify-center space-y-6">
+                        {/* Image 1: ENSA Fès Logo */}
+                        <div className="w-full max-w-[150px] p-2 bg-white rounded-lg shadow-md">
+                            <img src={LOGO_ENSA} alt="ENSA Fès Logo" className="w-full h-auto" />
+                        </div>
+                        {/* Image 2: Logo LISA */}
+                        <div className="w-full max-w-[200px] p-2 bg-white rounded-lg shadow-md">
+                            <img src={LOGO_LISA} alt="Logo LISA - ENSA Fès" className="w-full h-auto" />
+                        </div>
+                        {/* Image 3: Bâtiment USMBA/ENSA */}
+                        <div className="w-full max-w-[250px] rounded-lg overflow-hidden shadow-lg border border-gray-200">
+                            <img src={LOGO_USMBA} alt="Université Sidi Mohamed Ben Abdellah (USMBA)" className="w-full h-auto object-cover" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+
         // Définition de toutes les sections de contenu
         const sectionsContent = {
             about: (
                 <>
                     <p>
-                        Cette journée scientifique rend hommage au Professeur Mohamed Alfidi,
-                        pour son engagement académique, son leadership et sa contribution
-                        au rayonnement du Laboratoire LISA (Laboratoire d’Ingénierie des Systèmes, de l'Information et de l'Automatique).
+                        Cette journée scientifique est dédiée à la mémoire du <strong className="text-lisa-dark">Professeur Mohamed Alfidi</strong>, une figure emblématique
+                        de l'École Nationale des Sciences Appliquées (ENSA Fès) et membre fondateur
+                        du Laboratoire LISA (Laboratoire d’Ingénierie des Systèmes, de l'Information et de l'Automatique).
                     </p>
                     <p>
-                        Elle réunira enseignants, chercheurs et doctorants autour de thématiques
-                        variées liées à l’énergie, l’intelligence artificielle et les systèmes durables.
-                        C'est un moment fort pour honorer son héritage humain et institutionnel.
+                        L'objectif est d'honorer son héritage académique, son leadership inspirant et sa contribution
+                        essentielle au développement de la recherche dans les domaines de l'énergie, l'intelligence artificielle
+                        et les systèmes durables. Nous réunirons collègues, chercheurs, étudiants et sa famille pour un moment de partage scientifique et humain.
                     </p>
+                    <div className="mt-6 p-4 bg-lisa-bg-light rounded-xl border-l-4 border-lisa-cyan font-semibold text-lisa-dark">
+                        Hommage à un grand bâtisseur académique.
+                    </div>
                 </>
             ),
             program: (
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-lisa-bg-light rounded-xl p-6 border border-lisa-dark/20 shadow-md">
-                        <strong className="text-lisa-dark block mb-2 text-lg">09:00 - 12:30 : Matin</strong> 
-                        <p>Cérémonie d’ouverture, interventions d’invités d’honneur et exposés pléniers en présence de la famille du Professeur.</p>
+                <div className="space-y-6">
+                    <div className="flex items-start space-x-4 p-5 bg-lisa-bg-light rounded-xl border border-lisa-dark/20 shadow-md">
+                        <span className="text-3xl font-black text-lisa-cyan">I.</span>
+                        <div>
+                            <strong className="text-lisa-dark block mb-1 text-xl">09:00 - 12:30 : Cérémonie d’Ouverture & Conférences Plénières</strong> 
+                            <p className="text-gray-600">Allocutions des officiels, témoignages et exposés thématiques d’invités d’honneur, en présence de la famille du Professeur. Un moment institutionnel fort.</p>
+                        </div>
                     </div>
-                    <div className="bg-lisa-bg-light rounded-xl p-6 border border-lisa-dark/20 shadow-md">
-                        <strong className="text-lisa-dark block mb-2 text-lg">14:00 - 17:30 : Après-midi</strong> 
-                        <p>Sessions doctorales : présentation de posters et communications orales des jeunes chercheurs du laboratoire.</p>
+                    <div className="flex items-start space-x-4 p-5 bg-lisa-bg-light rounded-xl border border-lisa-dark/20 shadow-md">
+                        <span className="text-3xl font-black text-lisa-cyan">II.</span>
+                        <div>
+                            <strong className="text-lisa-dark block mb-1 text-xl">14:00 - 17:30 : Sessions Scientifiques & Doctorales</strong> 
+                            <p className="text-gray-600">Présentation des travaux de recherche (communications orales et posters) des doctorants et jeunes enseignants chercheurs du Laboratoire LISA, favorisant l'échange scientifique.</p>
+                        </div>
                     </div>
                 </div>
             ),
             calls: (
                 <>
-                    <p>
-                        Les doctorants et jeunes chercheurs du LISA sont invités à soumettre leurs travaux sous forme de <strong>communication orale</strong> ou de <strong>poster</strong>.
+                    <p className="text-lg">
+                        Nous invitons les doctorants et jeunes chercheurs du LISA à soumettre leurs résumés dans les domaines couverts par le laboratoire (Énergie, IA, Systèmes complexes).
                     </p>
-                    <div className="bg-lisa-bg-light p-4 rounded-lg border-lisa-dark/10 border">
-                        <p>
-                            <strong>Date limite de soumission :</strong> 15 novembre 2025<br />
-                            <strong>Notification d’acceptation :</strong> 25 novembre 2025
-                        </p>
+                    <div className="bg-lisa-bg-light p-6 rounded-xl border-l-4 border-lisa-dark/50 shadow-md">
+                        <h4 className="text-xl font-bold text-lisa-dark mb-3">Dates Clés de Soumission</h4>
+                        <ul className="space-y-2 list-disc list-inside ml-2">
+                            <li><strong className="text-lisa-cyan">Date limite de soumission :</strong> 15 novembre 2025</li>
+                            <li><strong className="text-lisa-cyan">Notification d’acceptation :</strong> 25 novembre 2025</li>
+                            <li><strong className="text-lisa-cyan">Version finale (Cameraready) :</strong> 01 décembre 2025</li>
+                        </ul>
                     </div>
-                    <div className="pt-4 space-x-3">
-                        <PrimaryButton className="bg-lisa-cyan hover:bg-lisa-dark">Soumettre un papier</PrimaryButton>
-                        <PrimaryButton className="bg-lisa-cyan hover:bg-lisa-dark">Soumettre un poster</PrimaryButton>
+                    <p className="mt-4">Les soumissions acceptées seront publiées dans les actes non-indexés de la journée.</p>
+                    <div className="pt-4 space-y-3 sm:space-y-0 sm:space-x-3">
+                        <PrimaryButton className="bg-lisa-cyan hover:bg-lisa-dark w-full sm:w-auto">Soumettre un Papier</PrimaryButton>
+                        <PrimaryButton className="bg-lisa-cyan hover:bg-lisa-dark w-full sm:w-auto">Soumettre un Poster</PrimaryButton>
                     </div>
                 </>
             ),
             speakers: (
-                <div className="space-y-3">
-                    <div className="p-4 bg-white rounded-lg border shadow-sm">Pr. A. Lahlou – Université Hassan II Casablanca</div>
-                    <div className="p-4 bg-white rounded-lg border shadow-sm">Pr. Y. Chaibi – USMBA Fès</div>
-                    <div className="p-4 bg-white rounded-lg border shadow-sm">Pr. Z. Chalh – USMBA Fès</div>
-                    <p className="pt-4 text-gray-500 italic">D'autres conférenciers seront annoncés prochainement.</p>
+                <div className="grid md:grid-cols-2 gap-4">
+                    <SpeakerCard name="Pr. A. Lahlou" affiliation="Université Hassan II Casablanca" topic="L'avenir de l'énergie durable" />
+                    <SpeakerCard name="Pr. Y. Chaibi" affiliation="USMBA Fès" topic="Intelligence Artificielle et modélisation" />
+                    <SpeakerCard name="Pr. Z. Chalh" affiliation="USMBA Fès / LISA" topic="Systèmes autonomes et contrôle" />
+                    <div className="md:col-span-2 text-center pt-4 text-lisa-gray italic">
+                        Le programme détaillé des plénières sera communiqué après confirmation.
+                    </div>
                 </div>
             ),
             committees: (
                 <div className="grid md:grid-cols-2 gap-8">
                     {/* Comité scientifique */}
-                    <div className="bg-lisa-bg-light rounded-2xl p-6 border border-lisa-dark/20">
-                        <h3 className="text-xl font-semibold mb-4 text-lisa-dark">Comité scientifique</h3>
-                        <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-                            <li>Pr. Zakaria CHALH</li>
+                    <div className="bg-lisa-bg-light rounded-2xl p-6 border-l-4 border-lisa-cyan/70 shadow-md">
+                        <h3 className="text-xl font-bold mb-4 text-lisa-dark">Comité scientifique</h3>
+                        <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 max-h-60 overflow-y-auto">
+                            <li>Pr. Zakaria CHALH (Président)</li>
                             <li>Pr. Nabil EL AKCHIOUI</li>
                             <li>Pr. Mohamed BENDAOUD</li>
                             <li>Pr. El Mehdi MELLOULI</li>
-                            <li>... et d'autres membres du réseau du Pr. Alfidi.</li>
+                            <li>Pr. Touria HAIDI</li>
+                            <li>Pr. Amine EL FATHI</li>
+                            <li>Pr. Abdelmoumen KAABAL</li>
+                            <li>Pr. Younes FARHAN</li>
+                            <li>Pr. S. El Felsoufi (FST)</li>
+                            <li>Pr. A. Lahrichi (ENSA)</li>
+                            <li>Dr. N. El Marrakechy (LISA)</li>
+                            <li>... et autres membres internationaux.</li>
                         </ul>
                     </div>
                     {/* Comité d'organisation */}
-                    <div className="bg-lisa-bg-light rounded-2xl p-6 border border-lisa-dark/20">
-                        <h3 className="text-xl font-semibold mb-4 text-lisa-dark">Comité d’organisation</h3>
-                        <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-                            <li>Pr. Zakaria CHALH (Président du comité)</li>
+                    <div className="bg-lisa-bg-light rounded-2xl p-6 border-l-4 border-lisa-cyan/70 shadow-md">
+                        <h3 className="text-xl font-bold mb-4 text-lisa-dark">Comité d’organisation</h3>
+                        <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 max-h-60 overflow-y-auto">
+                            <li>Pr. Zakaria CHALH (Coordonnateur)</li>
                             <li>Pr. Nabil EL AKCHIOUI</li>
-                            <li>Doctorants & Jeunes enseignants du LISA</li>
+                            <li>Pr. Mohamed BENDAOUD</li>
+                            <li>Pr. El Mehdi MELLOULI</li>
+                            <li>Tous les enseignants chercheurs membres du LISA</li>
+                            <li>L'ensemble des doctorants et jeunes chercheurs du LISA</li>
                         </ul>
                     </div>
                 </div>
             ),
             info: (
-                <div className="text-lg space-y-3">
-                    <p>
-                        <span className="font-semibold text-lisa-dark">📍 Lieu :</span> École Nationale des Sciences Appliquées de Fès (ENSA Fès)
-                    </p>
-                    <p>
-                        <span className="font-semibold text-lisa-dark">📅 Date :</span> 10 décembre 2025
-                    </p>
-                    <p>
-                        <span className="font-semibold text-lisa-dark">🕘 Heure :</span> 9h00 – 17h30
-                    </p>
+                <div className="grid md:grid-cols-2 gap-6 text-lg">
+                    <InfoBox icon="📍" title="Lieu de l'événement" text="École Nationale des Sciences Appliquées (ENSA Fès), Campus USMBA." />
+                    <InfoBox icon="📅" title="Date et Heure" text="Mardi 10 décembre 2025, de 9h00 à 17h30." />
+                    <InfoBox icon="🚌" title="Accès" text="L'ENSA Fès est accessible par les transports en commun (taxis, bus)." />
+                    <InfoBox icon="☕" title="Restauration" text="Une pause-café et un déjeuner seront offerts aux participants inscrits." />
                 </div>
             ),
             register: (
-                <>
-                    <p className="text-lg font-semibold">L’inscription pour assister à la journée est gratuite mais obligatoire en raison du nombre limité de places.</p>
-                    <PrimaryButton className="text-lg mt-4">Je m'inscris maintenant</PrimaryButton>
-                </>
+                <div className="text-center">
+                    <p className="text-xl font-bold text-lisa-dark mb-4">
+                        Participation gratuite mais inscription obligatoire !
+                    </p>
+                    <p className="text-gray-600 mb-6 max-w-lg mx-auto">
+                        Pour des raisons logistiques (sécurité, badges, restauration), veuillez confirmer votre présence en remplissant le formulaire d'inscription en ligne avant le 1er décembre 2025.
+                    </p>
+                    <PrimaryButton className="text-lg px-8 py-3 bg-lisa-cyan hover:bg-lisa-dark transform hover:scale-105">
+                        Accéder au Formulaire d'Inscription
+                    </PrimaryButton>
+                </div>
             ),
             contact: (
-                <div className="text-lg space-y-3">
-                    <p>
-                        Pour toute question relative à l'organisation ou aux soumissions :{" "}
-                        <a 
-                            href="mailto:lisa.usmba@gmail.com" 
-                            className="font-medium text-lisa-cyan hover:text-lisa-dark underline transition"
-                        >
-                            lisa.usmba@gmail.com
-                        </a>
-                    </p>
-                    <p>
-                        Secrétariat LISA : <span className="font-semibold">+212 5 35 60 21 44</span>
-                    </p>
+                <div className="grid sm:grid-cols-2 gap-6">
+                    <ContactDetail icon="📧" title="Courriel Principal" detail={<a href="mailto:lisa.usmba@gmail.com" className="text-lisa-cyan hover:text-lisa-dark font-medium transition">lisa.usmba@gmail.com</a>} />
+                    <ContactDetail icon="📞" title="Téléphone Secrétariat" detail={<span className="font-semibold">+212 5 35 60 21 44</span>} />
+                    <ContactDetail icon="🏢" title="Adresse" detail="ENSA Fès, Avenue de la Liberté, B.P. 2427, Fès – Maroc" />
+                    <ContactDetail icon="🌐" title="Site Web LISA" detail={<a href="#" className="text-lisa-cyan hover:text-lisa-dark font-medium transition">www.ensa.usmba.ac.ma/lisa</a>} />
                 </div>
             ),
         };
+
+        // Composants utilitaires
+        const SpeakerCard = ({ name, affiliation, topic }) => (
+            <div className="p-5 bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition">
+                <h4 className="text-lg font-bold text-lisa-dark">{name}</h4>
+                <p className="text-sm text-lisa-cyan font-semibold">{affiliation}</p>
+                <p className="text-sm mt-2 text-gray-600 italic">Thème : {topic}</p>
+            </div>
+        );
+
+        const InfoBox = ({ icon, title, text }) => (
+            <div className="flex items-start p-4 bg-lisa-bg-light rounded-lg border border-lisa-dark/10 shadow-sm">
+                <div className="flex-shrink-0 text-3xl mr-3">{icon}</div>
+                <div>
+                    <strong className="text-lisa-dark block">{title}</strong>
+                    <p className="text-sm text-gray-600">{text}</p>
+                </div>
+            </div>
+        );
+
+        const ContactDetail = ({ icon, title, detail }) => (
+            <div className="p-4 bg-lisa-bg-light rounded-lg border-l-4 border-lisa-cyan shadow-sm">
+                <p className="text-2xl mb-1">{icon}</p>
+                <strong className="text-lisa-dark block text-base">{title}</strong>
+                <p className="text-sm text-gray-700">{detail}</p>
+            </div>
+        );
+
 
         function LisaMemorialDaySite() {
             // État pour gérer la section active (l'onglet cliqué)
@@ -198,53 +304,72 @@
             return (
                 <div className="min-h-screen bg-gray-50 text-gray-800">
                     
-                    {/* Header Principal (Titre) */}
-                    <header className="bg-lisa-dark text-white text-center p-8">
-                        <h1 className="text-3xl sm:text-4xl font-black">
-                            Journée de recherche en hommage au Pr. Mohamed Alfidi
-                        </h1>
-                        <p className="mt-2 text-lisa-cyan font-semibold">Organisée par le Laboratoire LISA – USMBA Fès</p>
+                    {/* Header Principal (Bandeau de titre étendu) */}
+                    <header className="bg-lisa-dark text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden">
+                        <div className="max-w-7xl mx-auto">
+                            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+                                Journée de Recherche Scientifique
+                            </h1>
+                            <h2 className="text-xl sm:text-2xl mt-2 font-light text-lisa-cyan">
+                                En hommage au <strong className="font-bold">Professeur Mohamed Alfidi</strong>
+                            </h2>
+                            <p className="mt-4 text-gray-200">
+                                Le Laboratoire LISA de l'ENSA Fès rend hommage à son co-fondateur et pilier académique.
+                            </p>
+                        </div>
+                        {/* Motif de fond (purement décoratif) */}
+                        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 40 40\"><rect x=\"0\" y=\"0\" width=\"20\" height=\"20\" fill=\"%2362b6cb\" opacity=\"0.1\" /><rect x=\"20\" y=\"20\" width=\"20\" height=\"20\" fill=\"%2362b6cb\" opacity=\"0.1\" /></svg>')" }}></div>
                     </header>
 
                     {/* Navigation par Onglets (Sticky) */}
-                    <nav className="sticky top-0 z-40 bg-white shadow-lg overflow-x-auto whitespace-nowrap border-b border-lisa-cyan/30">
+                    <nav className="sticky top-0 z-40 bg-white shadow-xl overflow-x-auto whitespace-nowrap border-b border-lisa-cyan/50">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-start">
                             {navItems.map((n) => (
                                 <button 
                                     key={n.id} 
                                     onClick={() => setActiveSection(n.id)}
                                     className={`
-                                        text-sm font-medium py-3 px-4 md:px-6 transition flex-shrink-0
+                                        text-sm md:text-base font-semibold py-3 px-3 sm:px-4 md:px-6 transition flex-shrink-0 flex items-center space-x-2
                                         ${activeSection === n.id 
                                             // Style de l'onglet actif
-                                            ? 'text-lisa-dark border-b-4 border-lisa-cyan bg-lisa-bg-light font-bold' 
+                                            ? 'text-lisa-dark border-b-4 border-lisa-cyan bg-lisa-bg-light font-extrabold' 
                                             // Style des onglets inactifs
-                                            : 'text-gray-600 hover:text-lisa-dark hover:bg-gray-50'
+                                            : 'text-lisa-gray hover:text-lisa-dark hover:bg-gray-50'
                                         }
                                     `}
                                 >
-                                    {n.label}
+                                    <Icon id={n.id} className="w-5 h-5" />
+                                    <span>{n.label}</span>
                                 </button>
                             ))}
                         </div>
                     </nav>
 
-                    {/* Contenu principal: Rendu de la seule section active */}
-                    <main className="flex-grow">
-                        <ContentSection title={currentTitle}>
-                            {sectionsContent[activeSection]}
-                        </ContentSection>
-                    </main>
+                    {/* Contenu principal: Rendu de la seule section active et de la barre latérale */}
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 grid lg:grid-cols-3 lg:gap-10">
+                        
+                        {/* Colonne de Contenu (2/3 sur desktop) */}
+                        <main className="lg:col-span-2">
+                            <ContentSection title={currentTitle}>
+                                {sectionsContent[activeSection]}
+                            </ContentSection>
+                        </main>
+
+                        {/* Colonne Latérale (1/3 sur desktop) - Contient les détails et les logos */}
+                        <EventSidebar />
+                    </div>
 
                     {/* Footer */}
                     <footer className="py-10 bg-lisa-dark border-t mt-12">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
                             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                                 <div>
-                                    <p className="font-semibold">Laboratoire LISA – ENSA Fès</p>
-                                    <p className="text-sm text-gray-300">Journée de recherche en hommage au Pr. Mohamed Alfidi</p>
+                                    <p className="font-semibold text-lg">Laboratoire LISA – ENSA Fès</p>
+                                    <p className="text-sm text-gray-300">Hommage au Pr. Mohamed Alfidi | USMBA</p>
                                 </div>
-                                <div className="text-sm text-gray-300">© {new Date().getFullYear()} LISA – USMBA</div>
+                                <div className="text-sm text-gray-400">
+                                    Conception & Développement: LISA © {new Date().getFullYear()}
+                                </div>
                             </div>
                         </div>
                     </footer>
