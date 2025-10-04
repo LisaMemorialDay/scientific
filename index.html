@@ -15,209 +15,56 @@
       body {
         font-family: "Segoe UI", Roboto, sans-serif;
         margin: 0;
-        background-color: #f5f7fb;
-        color: #333;
+        background: linear-gradient(135deg, #f9fafb, #fdfdfd, #fef6f9);
+        color: #374151; /* gris foncé */
       }
       header {
-        background: linear-gradient(135deg, #1b4965, #62b6cb);
-        color: white;
+        background: white;
+        border-bottom: 1px solid #e5e7eb;
         padding: 20px;
         text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(6px);
       }
-      header h1 { margin: 0; font-size: 2rem; }
+      header h1 { margin: 0; font-size: 2rem; color: #1e3a8a; }
+      header p { margin: 5px 0 0; color: #6b7280; }
+
       nav {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        background-color: #ffffff;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
       }
       nav a {
         padding: 14px 20px;
         text-decoration: none;
-        color: #1b4965;
-        font-weight: bold;
+        color: #374151;
+        font-weight: 500;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: all 0.3s;
       }
       nav a:hover,
       nav a.active {
-        background-color: #e8f0f8;
-        color: #62b6cb;
+        color: #4f46e5; /* indigo */
+        background-color: #eef2ff;
+        border-radius: 6px;
       }
+
       section {
         max-width: 900px;
         margin: 40px auto;
         background: #fff;
-        border-radius: 10px;
+        border-radius: 12px;
         padding: 30px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       }
-      h2 { color: #1b4965; border-bottom: 2px solid #62b6cb; padding-bottom: 5px; }
-      footer {
-        background-color: #1b4965;
-        color: white;
-        text-align: center;
-        padding: 20px;
-        margin-top: 40px;
-      }
-      button {
-        background-color: #1b4965;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.3s;
-      }
-      button:hover {
-        background-color: #62b6cb;
-      }
-      .card {
-        background-color: #f9fafc;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 10px 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-
-    <script type="text/babel">
-      const { useState } = React;
-
-      function LisaMemorialDaySite() {
-        const [activeSection, setActiveSection] = useState("about");
-
-        const sections = {
-          about: (
-            <section>
-              <h2>À propos</h2>
-              <p>
-                Cette journée scientifique rend hommage au Professeur Mohamed Alfidi,
-                pour son engagement académique, son leadership et sa contribution
-                au rayonnement du Laboratoire LISA.
-              </p>
-              <p>
-                Elle réunira enseignants, chercheurs et doctorants autour de thématiques
-                variées liées à l’énergie, l’intelligence artificielle et les systèmes durables.
-              </p>
-            </section>
-          ),
-          program: (
-            <section>
-              <h2>Programme prévisionnel</h2>
-              <div className="card">
-                <strong>Matin :</strong> Cérémonie d’ouverture, interventions d’invités d’honneur et exposés pléniers.
-              </div>
-              <div className="card">
-                <strong>Après-midi :</strong> Sessions doctorales : présentation de posters et communications orales.
-              </div>
-            </section>
-          ),
-          calls: (
-            <section>
-              <h2>Appels à communications</h2>
-              <p>
-                Les doctorants sont invités à soumettre leurs travaux sous forme de <strong>communication orale</strong> ou de <strong>poster</strong>.
-              </p>
-              <p>
-                <strong>Date limite de soumission :</strong> 15 novembre 2025<br />
-                <strong>Notification d’acceptation :</strong> 25 novembre 2025
-              </p>
-              <button>Soumettre un papier</button>
-              <button style={{ marginLeft: "10px" }}>Soumettre un poster</button>
-            </section>
-          ),
-          speakers: (
-            <section>
-              <h2>Intervenants invités</h2>
-              <div className="card">Pr. A. Lahlou – Université Hassan II Casablanca</div>
-              <div className="card">Pr. Y. Chaibi – USMBA Fès</div>
-              <div className="card">Pr. Z. Chalh – USMBA Fès</div>
-            </section>
-          ),
-          committees: (
-            <section>
-              <h2>Comités</h2>
-              <div className="card">
-                <strong>Comité scientifique :</strong> composé de professeurs et chercheurs du LISA et de ses partenaires.
-              </div>
-              <div className="card">
-                <strong>Comité d’organisation :</strong> doctorants et enseignants du laboratoire.
-              </div>
-            </section>
-          ),
-          register: (
-            <section>
-              <h2>Inscription</h2>
-              <p>L’inscription est gratuite mais obligatoire.</p>
-              <button>S’inscrire à la journée</button>
-            </section>
-          ),
-          info: (
-            <section>
-              <h2>Infos pratiques</h2>
-              <p>
-                📍 Lieu : École Nationale des Sciences Appliquées de Fès<br />
-                📅 Date : 10 décembre 2025<br />
-                🕘 Heure : 9h00 – 17h30
-              </p>
-            </section>
-          ),
-          contact: (
-            <section>
-              <h2>Contact</h2>
-              <p>
-                Pour toute question :{" "}
-                <a href="mailto:lisa.usmba@gmail.com">lisa.usmba@gmail.com</a>
-              </p>
-            </section>
-          ),
-        };
-
-        const navItems = [
-          { id: "about", label: "À propos" },
-          { id: "program", label: "Programme" },
-          { id: "calls", label: "Appels à communications" },
-          { id: "speakers", label: "Intervenants" },
-          { id: "committees", label: "Comités" },
-          { id: "register", label: "Inscription" },
-          { id: "info", label: "Infos pratiques" },
-          { id: "contact", label: "Contact" },
-        ];
-
-        return (
-          <div>
-            <header>
-              <h1>Journée de Recherche en Hommage au Pr. Mohamed Alfidi</h1>
-              <p>Organisée par le Laboratoire LISA – USMBA Fès</p>
-            </header>
-
-            <nav>
-              {navItems.map((item) => (
-                <a
-                  key={item.id}
-                  className={activeSection === item.id ? "active" : ""}
-                  onClick={() => setActiveSection(item.id)}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-
-            <main>{sections[activeSection]}</main>
-
-            <footer>
-              <p>© 2025 Laboratoire LISA – Université Sidi Mohamed Ben Abdellah</p>
-            </footer>
-          </div>
-        );
+      h2 {
+        color: #1e40af; /* indigo foncé */
+        border-bottom: 2px solid #6366f1;
+        padding-bottom: 5px;
       }
 
-      ReactDOM.createRoot(document.getElementById("root")).render(<LisaMemorialDaySite />);
-    </script>
-  </body>
-</html>
+      .c
