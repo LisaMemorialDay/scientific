@@ -1,339 +1,622 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Journée LISA — Accueil</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    /* Minimal utility styles to keep layout working if Tailwind isn't present */
-    :root{--ensa-blue:#2546d3}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.5;color:#0f172a;margin:0;background:#f8fafc}
-    .container{max-width:1200px;margin:0 auto;padding-left:16px;padding-right:16px}
-    header{background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);border-bottom:1px solid #e6e6e6;position:sticky;top:0;z-index:40}
-    .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:40px;border-radius:6px;object-fit:contain}
-    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-    nav a{color:#0f172a;text-decoration:none;font-weight:600}
-    .cta{background:#4f46e5;color:#fff;padding:8px 14px;border-radius:10px;text-decoration:none;font-weight:600}
-    main{padding-top:20px}
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-    .hero img{width:100%;height:260px;object-fit:cover;border-radius:12px}
-    .card{background:#fff;padding:16px;border-radius:10px}
-    h1{font-size:28px;margin:0}
-    h2{font-size:22px;margin:0}
-    .small{font-size:13px;color:#6b7280}
-    footer{background:#fff;border-top:1px solid #e6e6e6;padding:28px 0}
-    .grid-3{display:flex;gap:24px}
-    pre{white-space:pre-wrap}
-    ul{padding-left:18px}
-    .comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      nav ul{display:none}
-      .cta{display:none}
-    }
-    @media(max-width:640px){
-      .header-inner{padding:8px}
-      .hero img{height:180px}
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="header-inner container">
-      <div class="brand">
-        <img src="assets/images/sidi-mohammed-logo.webp" alt="Logo ENSA Fès" id="logo">
-        <div>
-          <div style="font-weight:700;color:var(--ensa-blue)">Laboratoire LISA — ENSA Fès</div>
-          <div class="small">Journée d'hommage au Pr. Mohamed Alfidi</div>
-        </div>
-      </div>
-
-      <nav aria-label="Menu principal">
-        <ul>
-          <li><a href="#home">Accueil</a></li>
-          <li><a href="#program">Programme</a></li>
-          <li><a href="#speakers">Intervenants</a></li>
-          <li><a href="#committees">Comités</a></li>
-          <li><a href="#calls">Appels</a></li>
-          <li><a href="#info">Infos pratiques</a></li>
-          <li><a href="#register">Inscription</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <a class="cta" href="#register">S'inscrire</a>
-    </div>
-  </header>
-
-  <main class="container">
-
-    <!-- Home / Hero -->
-    <section id="home" class="hero" aria-labelledby="home-title">
-      <div>
-        <h1 id="home-title">Journée de recherche — Hommage au Pr. Mohamed Alfidi</h1>
-        <p style="margin-top:12px">Une journée dédiée à la mémoire d’un enseignant-chercheur engagé — discours, hommage et exposition de posters par les doctorants du laboratoire LISA.</p>
-        <p style="margin-top:12px"><a class="cta" href="#program">Voir le programme</a></p>
-      </div>
-      <div>
-        <img src="assets/images/Ensa-photo.jpeg" alt="ENSA Fès" onerror="imgFallback(this)">
-      </div>
-    </section>
-
-    <!-- Actualités -->
-    <section style="margin-top:20px">
-      <div class="card">
-        <h3 style="margin-top:0">Actualités</h3>
-        <p class="small">La journée aura lieu à l'ENSA Fès — détails du programme disponibles sur la page dédiée.</p>
-      </div>
-    </section>
-
-    <!-- Intervenants à la une -->
-    <section style="margin-top:18px">
-      <div class="card">
-        <h3 style="margin-top:0">Intervenants à la une</h3>
-        <div style="display:flex;gap:12px;align-items:center;margin-top:8px">
-          <img src="assets/images/alfidi.jpg" alt="Pr Alfidi" style="width:76px;height:76px;object-fit:cover;border-radius:8px" onerror="imgFallback(this)">
-          <div><strong>Pr. Zakaria CHALH</strong><br><span class="small">Professeur — ENSA Fès</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Programme -->
-    <section id="program" style="margin-top:22px">
-      <h2>Programme de la journée</h2>
-      <div class="card" style="margin-top:12px">
-        <pre>
-08h30 – 09h00 : Accueil et inscription des participants (remise des badges)
-09h00 – 09h45 : Cérémonie d'ouverture (allocutions officielles et mot de la famille)
-09h45 – 10h30 : Session plénière – Héritage scientifique et humain (parcours et témoignages)
-10h30 – 11h00 : Pause café & networking
-11h00 – 12h30 : Session scientifique – présentations orales des doctorants (posters)
-12h30 – 14h30 : Déjeuner convivial
-14h30 – 16h00 : Exposition des résumés doctoraux (présentations du LISA)
-16h00 – 16h30 : Séance d'hommage et remise des distinctions (projection et remise plaque)
-16h30 – 17h00 : Clôture & cocktail d'honneur
-        </pre>
-      </div>
-    </section>
-
-    <!-- Intervenants -->
-    <section id="speakers" style="margin-top:22px">
-      <h2>Intervenants</h2>
-      <div class="card" style="margin-top:12px">
-        <p class="small">Cliquez sur un intervenant pour voir le profil.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px">
-          <div class="card" style="padding:12px">
-            <img src="assets/images/alfidi.jpg" alt="Pr" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="imgFallback(this)">
-            <h4 style="margin-bottom:6px">Pr. Zakaria CHALH</h4>
-            <p class="small">Professeur — ENSA Fès<br><a href="https://scholar.google.com/citations?user=LLft2LYAAAAJ&hl=fr" target="_blank">Google Scholar</a></p>
-          </div>
-
-          <div class="card" style="padding:12px">
-            <img src="assets/images/prof-placeholder.jpg" alt="Pr" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="imgFallback(this)">
-            <h4 style="margin-bottom:6px">Pr. Nabil EL AKCHIOUI</h4>
-            <p class="small">Professeur — ENSA Fès</p>
-          </div>
-
-          <div class="card" style="padding:12px">
-            <img src="assets/images/prof-placeholder.jpg" alt="Pr" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="imgFallback(this)">
-            <h4 style="margin-bottom:6px">Pr. Mohamed BENDAOUD</h4>
-            <p class="small">Professeur — ENSA Fès</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Comités (deux colonnes) -->
-    <section id="committees" style="margin-top:22px">
-      <h2>Comités de la journée</h2>
-      <div class="card" style="background:#eef2ff;padding:16px;margin-top:12px;border-radius:12px">
-        <div class="comm-grid">
-          <div>
-            <h3 style="margin-top:0;font-size:18px">Comité scientifique</h3>
-            <p class="small">Membres experts du LISA et partenaires académiques.</p>
-            <ul style="margin-top:8px">
-              <li>Pr. Zakaria CHALH</li>
-              <li>Pr. Yassine CHAIBI</li>
-              <li>Pr. Hassane MOUSTABCHIR</li>
-              <li>Pr. Hicham HIHI</li>
-              <li>Pr. Mhamed SAYYOURI</li>
-              <li>Pr. Mohamed Ouahi</li>
-              <li>Pr. Souad ELKHATTABI</li>
-              <li>Pr. El Mehdi MELLOULI</li>
-              <li>Pr. Lahcen Oughdir</li>
-              <li>Pr. Jamila ELHAINI</li>
-              <li>Pr. Fatima Zahra FEKAK</li>
-              <li>Mme Salma OUHAIBI</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 style="margin-top:0;font-size:18px">Comité d’organisation</h3>
-            <p class="small">Équipe en charge de l'organisation pratique et logistique de la journée.</p>
-            <ul style="margin-top:8px">
-              <li>Pr. Zakaria CHALH — Président du comité</li>
-              <li>Mme Sohayla EL OUARDI — Responsable communication</li>
-              <li>Mme Salima Handa — Coordination logistique</li>
-              <li>Mme Zineb Tadlaoui — Relations participants</li>
-              <li>Doctorants &amp; jeunes enseignants du LISA</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Appels -->
-    <section id="calls" style="margin-top:22px">
-      <h2>Appel à communications & posters</h2>
-      <div class="card" style="margin-top:12px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-          <div>
-            <h3>Thématiques</h3>
-            <ul>
-              <li>Contrôle avancé, optimisation, estimation</li>
-              <li>Mécatronique, robotique, modélisation</li>
-              <li>Énergies renouvelables, hydrogène, stockage</li>
-              <li>Génie industriel, qualité, maintenance</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Dates clés (exemple)</h3>
-            <ul>
-              <li>Dépôt résumé : JJ/MM/AAAA</li>
-              <li>Notification : JJ/MM/AAAA</li>
-              <li>Version finale : JJ/MM/AAAA</li>
-            </ul>
-            <p style="margin-top:8px"><a class="cta" href="#register">Déposer / S'inscrire</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Infos pratiques -->
-    <section id="info" style="margin-top:22px">
-      <h2>Infos pratiques</h2>
-      <div class="card" style="margin-top:12px">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-          <div>
-            <h4>Lieu</h4>
-            <p>ENSA Fès — USMBA<br>Avenue Ahmed Ben Zekri, Fès</p>
-          </div>
-          <div>
-            <h4>Accès</h4>
-            <p>Parking sur site. Taxis / bus à proximité.</p>
-          </div>
-          <div>
-            <h4>Hébergement</h4>
-            <p>Liste d'hôtels partenaires (à compléter).</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Inscription -->
-    <section id="register" style="margin-top:22px">
-      <h2>Inscription</h2>
-      <div class="card" style="margin-top:12px;background:#f8fafc">
-        <p>Pour vous inscrire, envoyez un mail à <strong>lisa.contact@usmba.ac.ma</strong> ou utilisez le formulaire Google Form (à ajouter).</p>
-        <p style="margin-top:12px"><a class="cta" href="https://forms.gle/">Ouvrir le formulaire</a> <a href="mailto:lisa.contact@usmba.ac.ma" style="margin-left:12px">Envoyer par e‑mail</a></p>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" style="margin-top:22px">
-      <h2>Contact</h2>
-      <div class="card" style="margin-top:12px">
-        <p>Organisation : Laboratoire LISA — ENSA Fès<br>Email : <a href="mailto:lisa.contact@usmba.ac.ma">lisa.contact@usmba.ac.ma</a></p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-inner container" style="display:flex;gap:24px;align-items:flex-start;justify-content:space-between">
-      <div style="max-width:520px">
-        <img src="assets/images/sidi-mohammed-logo.webp" alt="Logo" style="height:56px;border-radius:6px" onerror="imgFallback(this)">
-        <p class="small" style="margin-top:12px">Laboratoire LISA — ENSA Fès<br>Organisation : lisa.contact@usmba.ac.ma</p>
-      </div>
-
-      <div class="grid-3" style="flex:1;display:flex;justify-content:space-between">
-        <div>
-          <h4 style="margin:0 0 8px 0;color:#111">Liens rapides</h4>
-          <ul class="small" style="list-style:none;padding:0;margin:0">
-            <li><a href="#program" style="color:#4f46e5">Programme</a></li>
-            <li><a href="#speakers" style="color:#4f46e5">Intervenants</a></li>
-            <li><a href="#committees" style="color:#4f46e5">Comités</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 style="margin:0 0 8px 0;color:#111">Contact</h4>
-          <p class="small" style="margin:0">lisa.contact@usmba.ac.ma</p>
-          <p class="small" style="margin-top:8px">© 2025 LISA — ENSA Fès</p>
-        </div>
-
-        <div>
-          <h4 style="margin:0 0 8px 0;color:#111">Adresse</h4>
-          <p class="small" style="margin:0">ENSA Fès — Université Sidi Mohammed Ben Abdellah</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile menu toggle (simple)
-    (function(){
-      const header = document.querySelector('header');
-      const btn = document.createElement('button');
-      btn.setAttribute('aria-label','Ouvrir le menu');
-      btn.style.display = 'none';
-      // show on small screens
-      function updateToggle(){
-        if(window.innerWidth <= 900){
-          btn.style.display = 'inline-block';
-        } else { btn.style.display = 'none'; }
-      }
-      btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-      btn.onclick = function(){
-        const ul = document.querySelector('nav ul');
-        if(!ul) return;
-        if(ul.style.display === 'flex' || ul.style.display === 'block'){
-          ul.style.display = 'none';
-          btn.setAttribute('aria-label','Ouvrir le menu');
-        } else {
-          ul.style.display = (window.innerWidth<=900)?'block':'flex';
-          btn.setAttribute('aria-label','Fermer le menu');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journée de recherche en hommage au Pr. Mohamed Alfidi - LISA ENSA Fès</title>
+    <!-- Chargement du CDN Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuration de la police Inter -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-      };
-      header.appendChild(btn);
-      window.addEventListener('resize', updateToggle);
-      updateToggle();
+        /* Style pour les liens de navigation actifs/inactifs */
+        .nav-link.active {
+            color: #4338CA; /* indigo-700 */
+            background-color: #EEF2FF; /* indigo-50 */
+            font-weight: 700;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'indigo': {
+                            50: '#EEF2FF',
+                            100: '#E0E7FF',
+                            200: '#C7D2FE',
+                            600: '#4F46E5',
+                            700: '#4338CA',
+                            800: '#3730A3',
+                            900: '#312E81',
+                        },
+                        'rose': {
+                            50: '#FFF1F2',
+                            100: '#FFE4E6',
+                            300: '#FDA4AF',
+                            600: '#E11D48',
+                            700: '#BE123C',
+                            800: '#9F1239',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-800">
 
-      // Intersection observer for active nav link highlighting
-      const navLinks = Array.from(document.querySelectorAll('nav a'));
-      const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-      if('IntersectionObserver' in window && sections.length){
-        const obs = new IntersectionObserver((entries)=>{
-          const visible = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-          if(visible){
-            navLinks.forEach(a=>a.classList.remove('active'));
-            const sel = document.querySelector('nav a[href="#'+visible.target.id+'"]');
-            if(sel) sel.classList.add('active');
-          }
-        },{threshold:[0.25,0.5,0.75]});
-        sections.forEach(s=>obs.observe(s));
-      }
-    })();
+    <!-- JavaScript Logic (remplace useState/useEffect) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let menuOpen = false;
+            let activeSectionId = 'about'; // État initial
 
-    function imgFallback(img){
-      if(img.dataset.failed) return;
-      img.dataset.failed = '1';
-      img.src = 'https://images.unsplash.com/photo-1530023367847-a683933f4171?q=80&w=1200&auto=format&fit=crop';
-    }
-  </script>
+            const navItems = [
+                { id: "about", label: "À propos" },
+                { id: "program", label: "Programme" },
+                { id: "speakers", label: "Intervenants" },
+                { id: "committees", label: "Comités" },
+                { id: "calls", label: "Appels" },
+                { id: "info", label: "Infos pratiques" },
+                { id: "register", label: "Inscription" },
+                { id: "contact", label: "Contact" },
+            ];
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuContent = document.getElementById('mobile-menu-content');
+            const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+            const sections = navItems.map(n => document.getElementById(n.id)).filter(Boolean);
+
+            /**
+             * Met à jour les classes des liens de navigation pour l'état actif/inactif.
+             */
+            function updateNavHighlight() {
+                navLinks.forEach(link => {
+                    const id = link.getAttribute('data-section-id');
+                    if (id === activeSectionId) {
+                        // Ajoute la classe 'active' et les classes de style spécifiques
+                        link.classList.add('active');
+                        link.classList.remove('text-gray-700', 'hover:text-indigo-600', 'hover:bg-gray-50');
+                    } else {
+                        // Retire la classe 'active' et applique les classes de style inactif
+                        link.classList.remove('active');
+                        link.classList.add('text-gray-700', 'hover:text-indigo-600', 'hover:bg-gray-50');
+                    }
+                });
+            }
+
+            /**
+             * Gère le clic sur les liens de navigation (défilement et mise à jour de l'état).
+             */
+            function handleNavLinkClick(e) {
+                e.preventDefault();
+                const id = e.currentTarget.getAttribute('data-section-id');
+                const targetElement = document.getElementById(id);
+                
+                if (targetElement) {
+                    // Ferme le menu mobile si ouvert
+                    if (menuOpen) {
+                        menuOpen = false;
+                        mobileMenuContent.classList.add('hidden');
+                        mobileMenuButton.querySelector('svg path').setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+                    }
+
+                    // Défilement fluide
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Mise à jour immédiate de l'état actif après le clic (pour un meilleur feedback)
+                    activeSectionId = id;
+                    updateNavHighlight();
+                }
+            }
+
+            // Attache les événements de clic aux liens de navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', handleNavLinkClick);
+            });
+
+            // Initialisation de l'état de surbrillance
+            updateNavHighlight();
+
+
+            /**
+             * Logique de l'Intersection Observer pour le Scroll Spy.
+             */
+            function setupScrollSpy() {
+                const obs = new IntersectionObserver(
+                    (entries) => {
+                        // Trouve l'entrée qui intersecte le plus
+                        const visible = entries
+                            .filter((e) => e.isIntersecting)
+                            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                        if (visible && visible.target.id) {
+                            // Met à jour l'ID de la section active
+                            activeSectionId = visible.target.id;
+                            updateNavHighlight();
+                        }
+                    },
+                    { threshold: [0.2, 0.4, 0.6] }
+                );
+
+                // Observe toutes les sections
+                sections.forEach((s) => obs.observe(s));
+            }
+
+            // Démarrage du Scroll Spy
+            setupScrollSpy();
+
+
+            /**
+             * Gère l'ouverture/fermeture du menu mobile.
+             */
+            mobileMenuButton.addEventListener('click', () => {
+                menuOpen = !menuOpen;
+                mobileMenuContent.classList.toggle('hidden', !menuOpen);
+                
+                // Change l'icône du hamburger
+                const svgPath = mobileMenuButton.querySelector('svg path');
+                if (menuOpen) {
+                    svgPath.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Icône X
+                } else {
+                    svgPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); // Icône Hamburger
+                }
+            });
+        });
+    </script>
+    <!-- Fin de la logique JavaScript -->
+
+
+    <!-- Header (Navigation) -->
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo and Institution Info -->
+            <div class="flex items-center gap-3">
+                <img
+                    src="https://placehold.co/40x40/4F46E5/FFFFFF?text=ENSA"
+                    alt="ENSA Fès Logo"
+                    class="w-10 h-10 rounded-lg object-cover"
+                />
+                <div class="leading-5">
+                    <p class="font-extrabold text-lg text-indigo-700">LISA</p>
+                    <p class="text-xs text-gray-500">ENSA Fès – USMBA</p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav id="desktop-nav" class="hidden md:flex items-center gap-3">
+                <a data-section-id="about" href="#about" class="nav-link text-sm font-medium transition-colors duration-200 p-2 rounded-lg">À propos</a>
+                <a data-section-id="program" href="#program" class="nav-link text-sm font-medium transition-colors duration-200 p-2 rounded-lg">Programme</a>
+                <a data-section-id="speakers" href="#speakers" class="nav-link text-sm font-medium transition-colors duration-200 p-2 rounded-lg">Intervenants</a>
+                <a data-section-id="committees" href="#committees" class="nav-link text-sm font-medium transition-colors duration-200 p-2 rounded-lg">Comités</a>
+                <a data-section-id="calls" href="#calls" class="nav-link text-sm font-medium transition-colors duration-200 p-2 rounded-lg">Appels</a>
+                <a data-section-id="info" href="#info" class="nav-link text-sm font-medium transition-colors duration-200 p-2 rounded-lg">Infos pratiques</a>
+                <a data-section-id="register" href="#register" class="nav-link text-sm font-medium transition-colors duration-200 p-2 rounded-lg">Inscription</a>
+                <a data-section-id="contact" href="#contact" class="nav-link text-sm font-medium transition-colors duration-200 p-2 rounded-lg">Contact</a>
+                
+                <a data-section-id="register" href="#register" class="nav-link inline-flex items-center rounded-xl bg-rose-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-rose-300/50 hover:bg-rose-700 transition duration-300 ml-3">
+                    S'inscrire
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 transition duration-150" aria-expanded="false" aria-controls="mobile-menu-content">
+                <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6 text-gray-700">
+                    <!-- Chemin initial pour l'icône hamburger -->
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Content (Initialement caché par JS) -->
+        <div id="mobile-menu-content" class="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md hidden">
+            <div class="px-4 py-3 space-y-2">
+                <a data-section-id="about" href="#about" class="nav-link block px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">À propos</a>
+                <a data-section-id="program" href="#program" class="nav-link block px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Programme</a>
+                <a data-section-id="speakers" href="#speakers" class="nav-link block px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Intervenants</a>
+                <a data-section-id="committees" href="#committees" class="nav-link block px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Comités</a>
+                <a data-section-id="calls" href="#calls" class="nav-link block px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Appels</a>
+                <a data-section-id="info" href="#info" class="nav-link block px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Infos pratiques</a>
+                <a data-section-id="register" href="#register" class="nav-link block px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Inscription</a>
+                <a data-section-id="contact" href="#contact" class="nav-link block px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Contact</a>
+
+                <a data-section-id="register" href="#register" class="nav-link block text-center px-3 py-2 rounded-xl text-sm font-semibold text-white bg-rose-600 hover:bg-rose-700 transition duration-300 mt-2">
+                    S'inscrire
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <!-- Subtle background gradient -->
+        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-50 via-white to-rose-50"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-gray-900">
+                    Journée de recherche en hommage au <span class="text-indigo-700">Pr. Mohamed Alfidi</span>
+                </h1>
+                <p class="mt-4 text-base sm:text-lg text-gray-600">
+                    Membre fondateur du Laboratoire LISA (depuis 2015). Une journée scientifique pour honorer son héritage académique, humain et institutionnel.
+                </p>
+                <p class="mt-2 text-sm text-gray-500 italic">اليوم العلمي تكريماً للأستاذ محمد الفيدي رحمه الله.</p>
+                
+                <!-- Key Info Badges -->
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-white border border-indigo-200 px-3 py-1.5 text-sm font-medium text-gray-700 shadow-md">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <strong>Date :</strong> <span>Samedi 15 novembre 2025</span>
+                    </span>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-white border border-rose-200 px-3 py-1.5 text-sm font-medium text-gray-700 shadow-md">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <strong>Lieu :</strong> <span>ENSA Fès</span>
+                    </span>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="mt-8 flex gap-3">
+                    <a data-section-id="register" href="#register" class="rounded-xl bg-rose-600 px-6 py-3 text-white font-semibold shadow-xl shadow-rose-400/50 hover:bg-rose-700 transition duration-300 transform hover:scale-[1.02]">
+                        S'inscrire
+                    </a>
+                    <a data-section-id="program" href="#program" class="rounded-xl px-6 py-3 font-semibold text-indigo-700 border-2 border-indigo-200 hover:bg-indigo-50 transition duration-300">
+                        Voir le programme
+                    </a>
+                </div>
+            </div>
+
+            <!-- Photo Placeholder -->
+            <div class="relative transform translate-y-3 shadow-2xl rounded-3xl overflow-hidden border-4 border-white">
+                <div class="aspect-[4/3] w-full bg-white">
+                    <img
+                        src="/photo-alfidi.jpg"
+                        alt="Pr. Mohamed Alfidi"
+                        class="w-full h-full object-cover transition duration-500 hover:scale-105"
+                        onerror="this.onerror=null; this.src='https://placehold.co/1200x900/4F46E5/FFFFFF?text=Photo+du+Pr.+Mohamed+Alfidi';"
+                    />
+                </div>
+                <p class="mt-2 text-xs text-center text-gray-500 p-2 bg-white rounded-b-xl lg:rounded-b-3xl">Remplacez la photo par votre image officielle (photo-alfidi.jpg).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tribute Section -->
+    <section id="tribute" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 text-center">Hommage au Pr. Mohamed Alfidi</h2>
+            <div class="mt-6 grid lg:grid-cols-3 gap-8 items-start bg-white p-8 rounded-3xl shadow-xl border border-indigo-100">
+                <!-- Photo Column -->
+                <div class="order-first lg:order-last lg:col-span-1">
+                    <div class="aspect-[3/4] w-full rounded-2xl overflow-hidden border-4 border-indigo-200 shadow-lg">
+                        <img 
+                            src="https://placehold.co/600x800/8B5CF6/FFFFFF?text=Pr.+Alfidi+Photo" 
+                            alt="Pr. Mohamed Alfidi" 
+                            class="w-full h-full object-cover" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x800/8B5CF6/FFFFFF?text=Pr.+Alfidi+Photo';"
+                        />
+                    </div>
+                    <p class="mt-3 text-xs text-center text-gray-500">Photo officielle – LISA / ENSA Fès.</p>
+                </div>
+
+                <!-- Text and Details Column -->
+                <div class="lg:col-span-2">
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        Le Pr. <strong>Mohamed Alfidi</strong> a exercé à l'<strong>École Nationale des Sciences Appliquées de Fès</strong> (ENSA Fès).
+                        Ses travaux de recherche couvrent la <em>physique computationnelle</em>, les <em>mathématiques appliquées</em> et le
+                        <em> génie des systèmes automobiles</em>. Son projet récent porte sur « <strong>Analysis and synthesis for two‑dimensional systems with delays</strong> ».
+                    </p>
+                    <p class="mt-4 text-gray-700 leading-relaxed text-lg italic border-l-4 border-indigo-400 pl-4 bg-indigo-50/50 p-3 rounded-r-lg">
+                        Chercheur rigoureux et pédagogue dévoué, il a contribué au rayonnement du LISA depuis sa création en 2015,
+                        par son engagement scientifique et humain. Que Dieu lui fasse miséricorde.
+                    </p>
+                    
+                    <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
+                        <div class="rounded-xl border border-indigo-300 bg-indigo-50 p-4 shadow-md">
+                            <h3 class="font-bold text-base text-indigo-800">Domaines d'expertise</h3>
+                            <ul class="mt-2 list-disc list-inside text-gray-800 space-y-1">
+                                <li>Physique computationnelle</li>
+                                <li>Mathématiques appliquées</li>
+                                <li>Automotive Systems Engineering</li>
+                            </ul>
+                        </div>
+                        <div class="rounded-xl border border-rose-300 bg-rose-50 p-4 shadow-md">
+                            <h3 class="font-bold text-base text-rose-800">Projet de recherche</h3>
+                            <p class="mt-2 text-gray-800">Analysis and synthesis for two‑dimensional systems with delays.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-14">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold">À propos de la Journée</h2>
+            <p class="mt-4 text-gray-700 leading-7 max-w-4xl">
+                Cette journée rend hommage au Pr. Mohamed Alfidi, enseignant-chercheur d'exception et co‑fondateur du Laboratoire LISA. 
+                Son apport aux domaines du contrôle avancé, du génie électrique et de l'ingénierie des systèmes a marqué des générations d'étudiants et de chercheurs.
+            </p>
+            <div class="mt-6 grid sm:grid-cols-2 gap-6">
+                <div class="rounded-2xl bg-white border border-indigo-100 p-6 shadow-lg">
+                    <h3 class="font-semibold text-xl text-indigo-700 mb-2">Objectifs</h3>
+                    <ul class="mt-2 list-disc list-inside text-gray-700 space-y-2">
+                        <li>Honorer son héritage scientifique, pédagogique et humain.</li>
+                        <li>Valoriser les travaux actuels du LISA dans ses axes phares.</li>
+                        <li>Renforcer les collaborations académiques et industrielles.</li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl bg-white border border-rose-100 p-6 shadow-lg">
+                    <h3 class="font-semibold text-xl text-rose-700 mb-2">Axes scientifiques de LISA</h3>
+                    <ul class="mt-2 list-disc list-inside text-gray-700 space-y-2">
+                        <li>Contrôle avancé des procédés</li>
+                        <li>Modélisation & systèmes mécatroniques</li>
+                        <li>Systèmes énergétiques & hydrogène</li>
+                        <li>Génie industriel & management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section id="program" class="py-14 bg-white border-y">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold">Programme prévisionnel</h2>
+
+            <div class="mt-8 grid lg:grid-cols-2 gap-8">
+                <div class="rounded-2xl border border-gray-200 p-6 bg-gray-50 shadow-md">
+                    <h3 class="font-bold text-2xl text-indigo-700 border-b pb-2 mb-4">Matinée (Hommage & Plénière)</h3>
+                    <ul class="mt-3 space-y-4 text-base">
+                        <li class="flex justify-between items-center"><strong>08:30</strong> <span class="text-gray-700">Accueil des participants & Enregistrement</span></li>
+                        <li class="flex justify-between items-center"><strong>09:00</strong> <span class="text-gray-700">Ouverture officielle (Direction ENSA, Doyen USMBA, LISA)</span></li>
+                        <li class="flex justify-between items-center"><strong>09:30</strong> <span class="text-gray-700">Témoignages, Discours & Projection hommage</span></li>
+                        <li class="flex justify-between items-center"><strong>10:30</strong> <span class="text-gray-700">Conférence plénière invitée (Axée sur les travaux du Pr. Alfidi)</span></li>
+                        <li class="flex justify-between items-center"><strong>11:30</strong> <span class="text-gray-700">Pause-café & Session Posters</span></li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl border border-gray-200 p-6 bg-gray-50 shadow-md">
+                    <h3 class="font-bold text-2xl text-rose-700 border-b pb-2 mb-4">Après‑midi (Scientifique & Clôture)</h3>
+                    <ul class="mt-3 space-y-4 text-base">
+                        <li class="flex justify-between items-center"><strong>14:00</strong> <span class="text-gray-700">Sessions de communications orales parallèles</span></li>
+                        <li class="flex justify-between items-center"><strong>16:00</strong> <span class="text-gray-700">Table ronde : Héritage, Rôle du LISA & Perspectives d'avenir</span></li>
+                        <li class="flex justify-between items-center"><strong>17:00</strong> <span class="text-gray-700">Clôture & Remise de la plaque commémorative aux proches</span></li>
+                        <li class="flex justify-between items-center"><strong>17:15</strong> <span class="text-gray-700">Lecture de la Fatiha & Moment de recueillement</span></li>
+                        <li class="flex justify-between items-center"><strong>17:30</strong> <span class="text-gray-700">Cocktail de clôture</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="mt-6 text-sm text-gray-500 text-center">*Le programme détaillé sera communiqué après validation du comité scientifique. L'horaire est sujet à de légères modifications.</p>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section id="speakers" class="py-14 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold">Intervenants invités (Conférences Plénières)</h2>
+            <p class="mt-2 text-gray-600 max-w-3xl">Des figures clés du monde académique et industriel partageront leurs travaux et leurs souvenirs du Pr. Alfidi.</p>
+            <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Speaker 1 -->
+                <div class="rounded-2xl border bg-white p-5 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
+                        <img
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&h=400&fit=crop&auto=format&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&crop=face,center&w=400&h=400&facepad=3&dpr=2"
+                            alt="Pr. Ahmed F."
+                            class="w-full h-full object-cover"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/D1D5DB/374151?text=AF';"
+                        />
+                    </div>
+                    <h3 class="mt-4 font-extrabold text-xl text-indigo-800">Pr. Ahmed F.</h3>
+                    <p class="text-base text-gray-600 mt-0.5">Université X, Maroc</p>
+                    <p class="mt-3 text-sm italic text-gray-500">Conférence :</p>
+                    <p class="text-base font-medium text-gray-800">Contrôle H-infini des systèmes 2D</p>
+                </div>
+                <!-- Speaker 2 -->
+                <div class="rounded-2xl border bg-white p-5 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
+                        <img
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&h=400&fit=crop&auto=format&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&crop=face,center&w=400&h=400&facepad=3&dpr=2"
+                            alt="Dr. Fatima Z."
+                            class="w-full h-full object-cover"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/D1D5DB/374151?text=FZ';"
+                        />
+                    </div>
+                    <h3 class="mt-4 font-extrabold text-xl text-indigo-800">Dr. Fatima Z.</h3>
+                    <p class="text-base text-gray-600 mt-0.5">Entreprise Y, France</p>
+                    <p class="mt-3 text-sm italic text-gray-500">Conférence :</p>
+                    <p class="text-base font-medium text-gray-800">Applications de l'ingénierie automobile</p>
+                </div>
+                <!-- Speaker 3 -->
+                <div class="rounded-2xl border bg-white p-5 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="aspect-square w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
+                        <img
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&h=400&fit=crop&auto=format&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&crop=face,center&w=400&h=400&facepad=3&dpr=2"
+                            alt="Pr. Kamal L."
+                            class="w-full h-full object-cover"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/D1D5DB/374151?text=KL';"
+                        />
+                    </div>
+                    <h3 class="mt-4 font-extrabold text-xl text-indigo-800">Pr. Kamal L.</h3>
+                    <p class="text-base text-gray-600 mt-0.5">Université Z, Canada</p>
+                    <p class="mt-3 text-sm italic text-gray-500">Conférence :</p>
+                    <p class="text-base font-medium text-gray-800">Simulation numérique en physique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committees Section -->
+    <section id="committees" class="py-14 bg-white border-y">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-6">Comités de la journée</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Comité scientifique -->
+                <div class="bg-indigo-50 rounded-2xl p-6 border border-indigo-300 shadow-xl">
+                    <h3 class="text-2xl font-bold mb-4 text-indigo-900">Comité scientifique</h3>
+                    <div class="columns-2 space-y-1 text-gray-800 text-sm">
+                        <li>Pr. Zakaria CHALH</li>
+                        <li>Pr. Hicham HIHI</li>
+                        <li>Pr. Hassane MOUSTABCHIR</li>
+                        <li>Pr. El Mehdi MELLOULI</li>
+                        <li>Pr. Yassine CHAIBI</li>
+                        <li>Pr. Mhamed SAYYOURI</li>
+                        <li>Pr. Souad ELKHATTABI</li>
+                        <li>Pr. Hassan EL BHIH</li>
+                        <li>Pr. Abderrahim MARZAK</li>
+                    </div>
+                </div>
+
+                <!-- Comité d'organisation -->
+                <div class="bg-rose-50 rounded-2xl p-6 border border-rose-300 shadow-xl">
+                    <h3 class="text-2xl font-bold mb-4 text-rose-900">Comité d’organisation</h3>
+                    <div class="columns-2 space-y-1 text-gray-800 text-sm">
+                        <li>Pr. Zakaria CHALH (Président)</li>
+                        <li>Pr. Hicham HIHI</li>
+                        <li>Pr. Hassane MOUSTABCHIR</li>
+                        <li>Pr. El Mehdi MELLOULI</li>
+                        <li>Pr. Yassine CHAIBI</li>
+                        <li>Pr. Mhamed SAYYOURI</li>
+                        <li>Pr. Souad ELKHATTABI</li>
+                        <li>Doctorants & Jeunes enseignants du LISA</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calls Section -->
+    <section id="calls" class="py-14">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold">Appel à communications & posters</h2>
+            <p class="mt-2 text-gray-600 max-w-4xl">Nous invitons les chercheurs et étudiants à soumettre leurs travaux de recherche en lien avec les thématiques du LISA.</p>
+            
+            <div class="mt-6 grid lg:grid-cols-3 gap-6">
+                <div class="rounded-2xl border p-6 bg-white shadow-md lg:col-span-2">
+                    <h3 class="font-bold text-xl text-indigo-700">Thématiques de soumission</h3>
+                    <p class="mt-2 text-sm text-gray-700">Les résumés doivent couvrir l'un des axes scientifiques du laboratoire, en particulier:</p>
+                    <div class="mt-3 grid sm:grid-cols-2 gap-3 text-sm">
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                            <li>Contrôle avancé, optimisation, estimation</li>
+                            <li>Mécatronique, robotique, modélisation</li>
+                            <li>Systèmes d'information et intelligence artificielle</li>
+                        </ul>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                            <li>Énergies renouvelables, hydrogène, stockage</li>
+                            <li>Génie industriel, qualité, maintenance, supply chain</li>
+                            <li>Systèmes embarqués et temps réel</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rounded-2xl border p-6 bg-rose-50 shadow-md">
+                    <h3 class="font-bold text-xl text-rose-700">Dates clés</h3>
+                    <ul class="mt-2 space-y-1 text-gray-800 text-sm">
+                        <li class="flex justify-between"><span>Dépôt résumé :</span> <strong>15 septembre 2025</strong></li>
+                        <li class="flex justify-between"><span>Notification :</span> <strong>15 octobre 2025</strong></li>
+                        <li class="flex justify-between"><span>Version finale :</span> <strong>30 octobre 2025</strong></li>
+                    </ul>
+                    <a data-section-id="register" href="#register" class="inline-flex mt-4 rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 shadow-lg">
+                        Déposer / S'inscrire
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practical info -->
+    <section id="info" class="py-14 bg-gray-50 border-y">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold">Informations pratiques</h2>
+            <div class="mt-6 grid md:grid-cols-3 gap-6 text-base">
+                <div class="rounded-2xl border bg-white p-6 shadow-md">
+                    <h3 class="font-semibold text-lg text-indigo-700">Lieu de la journée</h3>
+                    <p class="mt-2 text-gray-700"><strong>École Nationale des Sciences Appliquées (ENSA) Fès</strong></p>
+                    <p class="text-gray-500">Avenue Ahmed Ben Zekri, BP 2427, Fès – Maroc</p>
+                </div>
+                <div class="rounded-2xl border bg-white p-6 shadow-md">
+                    <h3 class="font-semibold text-lg text-indigo-700">Accès et Transport</h3>
+                    <p class="mt-2 text-gray-700">Parking gratuit sur le site de l'ENSA Fès. Accès facile par petit taxi depuis la gare ONCF ou l'aéroport.</p>
+                </div>
+                <div class="rounded-2xl border bg-white p-6 shadow-md">
+                    <h3 class="font-semibold text-lg text-indigo-700">Hébergement</h3>
+                    <p class="mt-2 text-gray-700">De nombreux hôtels sont disponibles à proximité. Une liste d'hôtels partenaires avec tarifs négociés sera communiquée après l'inscription.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration CTA -->
+    <section id="register" class="py-16 bg-rose-600/10 border-y border-rose-300">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-rose-800">Participez à cette journée d'hommage</h2>
+            <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto">
+                L'inscription est **gratuite mais obligatoire** pour la participation. Vous pouvez aussi soumettre votre résumé via le formulaire si vous souhaitez présenter.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                    href="https://forms.gle/" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    class="rounded-xl bg-rose-600 px-8 py-3 text-lg text-white font-bold shadow-2xl shadow-rose-400/60 hover:bg-rose-700 transition duration-300 transform hover:scale-[1.02]"
+                >
+                    Remplir le Formulaire d'Inscription
+                </a>
+                <a 
+                    href="mailto:lisa@usmba.ac.ma?subject=Inscription%20et%20Soumission%20-%20Journ%C3%A9e%20LISA" 
+                    class="rounded-xl px-8 py-3 text-lg font-semibold text-rose-700 border-2 border-rose-300 bg-white hover:bg-rose-100 transition duration-300"
+                >
+                    Contacter l'organisation
+                </a>
+            </div>
+            <p class="mt-3 text-xs text-gray-500">N'oubliez pas de remplacer le lien par votre Google Form / site d'inscription officiel.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-14">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold">Contactez le comité d'organisation</h2>
+            <form class="mt-6 grid grid-cols-1 gap-4 bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <input class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Nom complet" required />
+                    <input class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="E‑mail" type="email" required />
+                </div>
+                <input class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Sujet" required />
+                <textarea class="w-full rounded-xl border border-gray-300 px-4 py-3 h-32 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Votre message…" required></textarea>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-2">
+                    <label class="text-sm text-gray-600 inline-flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                        Recevoir les mises à jour par e‑mail
+                    </label>
+                    <button 
+                        type="submit" 
+                        class="rounded-xl bg-gray-900 text-white px-6 py-3 font-semibold hover:bg-black shadow-lg transition duration-300 w-full sm:w-auto"
+                    >
+                        Envoyer le message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div>
+                    <p class="font-bold text-lg text-indigo-400">Laboratoire LISA</p>
+                    <p class="text-sm text-gray-400">Journée de recherche en hommage au Pr. Mohamed Alfidi</p>
+                </div>
+                <div class="text-sm text-gray-500">© 2025 LISA – USMBA. Tous droits réservés.</div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
