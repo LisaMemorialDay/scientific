@@ -1,316 +1,339 @@
-import React, { useEffect, useMemo, useState } from "react";
-
-type NavItem = { id: string; label: string };
-
-export default function LisaSinglePageFull(): JSX.Element {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState<string>("about");
-
-  const navItems: NavItem[] = useMemo(
-    () => [
-      { id: "home", label: "Accueil" },
-      { id: "program", label: "Programme" },
-      { id: "speakers", label: "Intervenants" },
-      { id: "committees", label: "Comités" },
-      { id: "calls", label: "Appels" },
-      { id: "info", label: "Infos pratiques" },
-      { id: "register", label: "Inscription" },
-      { id: "contact", label: "Contact" },
-    ],
-    []
-  );
-
-  // Highlight section in view
-  useEffect(() => {
-    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
-    const sections = navItems.map((n) => document.getElementById(n.id)).filter(Boolean) as HTMLElement[];
-    if (!sections.length) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const vis = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (vis?.target?.id) setActive(vis.target.id);
-      },
-      { threshold: [0.25, 0.5, 0.75] }
-    );
-    sections.forEach((s) => obs.observe(s));
-    return () => obs.disconnect();
-  }, [navItems]);
-
-  return (
-    <div className="min-h-screen font-sans text-gray-900 bg-gray-50">
-      {/* Header */}
-      <header className="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-gray-200">
-        <div className="header-inner container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="brand flex items-center gap-3">
-            <img src="/assets/images/sidi-mohammed-logo.webp" alt="Logo ENSA Fès" className="h-10 w-10 object-contain rounded" />
-            <div>
-              <div style={{fontWeight:700,color:"var(--ensa-blue)"}}>Laboratoire LISA — ENSA Fès</div>
-              <div className="small text-xs text-gray-500">Journée d'hommage au Pr. Mohamed Alfidi</div>
-            </div>
-          </div>
-
-          <nav aria-label="Menu principal" className="hidden md:block">
-            <ul className="flex items-center gap-6 text-sm">
-              {navItems.map((n) => (
-                <li key={n.id}>
-                  <a href={`#${n.id}`} className={`hover:text-indigo-700 ${active === n.id ? "text-indigo-700 font-semibold" : "text-gray-700"}`}>
-                    {n.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <a className="cta hidden md:inline-flex ml-4 rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold" href="#register">S'inscrire</a>
-
-          <button className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100" onClick={() => setMenuOpen((s) => !s)} aria-expanded={menuOpen} aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}>
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </button>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Journée LISA — Accueil</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Minimal utility styles to keep layout working if Tailwind isn't present */
+    :root{--ensa-blue:#2546d3}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.5;color:#0f172a;margin:0;background:#f8fafc}
+    .container{max-width:1200px;margin:0 auto;padding-left:16px;padding-right:16px}
+    header{background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);border-bottom:1px solid #e6e6e6;position:sticky;top:0;z-index:40}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:40px;border-radius:6px;object-fit:contain}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{color:#0f172a;text-decoration:none;font-weight:600}
+    .cta{background:#4f46e5;color:#fff;padding:8px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    main{padding-top:20px}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero img{width:100%;height:260px;object-fit:cover;border-radius:12px}
+    .card{background:#fff;padding:16px;border-radius:10px}
+    h1{font-size:28px;margin:0}
+    h2{font-size:22px;margin:0}
+    .small{font-size:13px;color:#6b7280}
+    footer{background:#fff;border-top:1px solid #e6e6e6;padding:28px 0}
+    .grid-3{display:flex;gap:24px}
+    pre{white-space:pre-wrap}
+    ul{padding-left:18px}
+    .comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      nav ul{display:none}
+      .cta{display:none}
+    }
+    @media(max-width:640px){
+      .header-inner{padding:8px}
+      .hero img{height:180px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner container">
+      <div class="brand">
+        <img src="assets/images/sidi-mohammed-logo.webp" alt="Logo ENSA Fès" id="logo">
+        <div>
+          <div style="font-weight:700;color:var(--ensa-blue)">Laboratoire LISA — ENSA Fès</div>
+          <div class="small">Journée d'hommage au Pr. Mohamed Alfidi</div>
         </div>
+      </div>
 
-        {menuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white">
-            <div className="px-4 py-3 space-y-2">
-              {navItems.map((n) => (
-                <a key={n.id} href={`#${n.id}`} className="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-50" onClick={() => setMenuOpen(false)}>
-                  {n.label}
-                </a>
-              ))}
-              <a href="#register" className="block text-center px-3 py-2 rounded-lg text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700" onClick={() => setMenuOpen(false)}>S'inscrire</a>
-            </div>
-          </div>
-        )}
-      </header>
+      <nav aria-label="Menu principal">
+        <ul>
+          <li><a href="#home">Accueil</a></li>
+          <li><a href="#program">Programme</a></li>
+          <li><a href="#speakers">Intervenants</a></li>
+          <li><a href="#committees">Comités</a></li>
+          <li><a href="#calls">Appels</a></li>
+          <li><a href="#info">Infos pratiques</a></li>
+          <li><a href="#register">Inscription</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-      <main>
-        {/* Home / Hero */}
-        <section id="home" className="container mx-auto px-4 py-12">
-          <div className="hero grid lg:grid-cols-2 gap-8 items-center">
-            <div className="copy">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">Journée de recherche — Hommage au <span className="text-indigo-700">Pr. Mohamed Alfidi</span></h1>
-              <p className="mt-4 text-gray-700">Une journée dédiée à la mémoire d’un enseignant-chercheur engagé — discours, hommage et exposition de posters par les doctorants du laboratoire LISA.</p>
-              <p style={{marginTop:12}}><a className="cta inline-block rounded-lg bg-indigo-600 px-4 py-2 text-white" href="#program">Voir le programme</a></p>
-            </div>
-            <div className="image">
-              <img src="/assets/images/Ensa-photo.jpeg" alt="ENSA Fès" className="w-full h-64 object-cover rounded" />
-            </div>
-          </div>
-        </section>
-
-        {/* News */}
-        <section className="container mx-auto px-4 py-6">
-          <div className="card bg-white border p-4 rounded-lg">
-            <h3 className="font-semibold">Actualités</h3>
-            <p className="text-sm text-gray-600 mt-2">La journée aura lieu à l'ENSA Fès — détails du programme disponibles sur la page dédiée.</p>
-          </div>
-        </section>
-
-        {/* Featured speaker */}
-        <section className="container mx-auto px-4 py-6">
-          <div className="card bg-white border p-4 rounded-lg flex items-center gap-4">
-            <img src="/assets/images/alfidi.jpg" alt="Pr Alfidi" className="w-20 h-20 object-cover rounded" />
-            <div>
-              <div className="font-semibold">Pr. Zakaria CHALH</div>
-              <div className="text-sm text-gray-600">Professeur — ENSA Fès</div>
-            </div>
-          </div>
-        </section>
-
-        {/* Programme */}
-        <section id="program" className="container mx-auto px-4 py-10 bg-white border-y">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold">Programme de la journée</h2>
-            <div className="mt-4 grid lg:grid-cols-2 gap-6">
-              <div className="rounded-lg border p-4">
-                <h3 className="font-semibold">Matin</h3>
-                <ul className="mt-3 text-sm space-y-2">
-                  <li><strong>08:30</strong> – Accueil & enregistrement</li>
-                  <li><strong>09:00</strong> – Ouverture officielle (ENSA, LISA)</li>
-                  <li><strong>09:30</strong> – Témoignages & projection hommage</li>
-                  <li><strong>10:30</strong> – Conférence plénière invitée</li>
-                  <li><strong>11:30</strong> – Pause-café & posters</li>
-                </ul>
-              </div>
-              <div className="rounded-lg border p-4">
-                <h3 className="font-semibold">Après‑midi</h3>
-                <ul className="mt-3 text-sm space-y-2">
-                  <li><strong>14:00</strong> – Sessions parallèles (orales)</li>
-                  <li><strong>16:00</strong> – Table ronde : Héritage & perspectives</li>
-                  <li><strong>17:00</strong> – Clôture & remise de la plaque commémorative</li>
-                  <li><strong>17:15</strong> – Lecture de la Fatiha & moment de recueillement</li>
-                  <li><strong>17:30</strong> – Cocktail</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Speakers */}
-        <section id="speakers" className="container mx-auto px-4 py-10">
-          <h2 className="text-2xl font-bold">Intervenants</h2>
-          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <article key={i} className="rounded-lg border bg-white p-4">
-                <div className="h-40 bg-gray-100 rounded overflow-hidden">
-                  <img src={`https://source.unsplash.com/collection/895539/400x40${i}`} alt="Invité" className="w-full h-full object-cover" />
-                </div>
-                <h3 className="mt-3 font-semibold">Prénom Nom</h3>
-                <p className="text-sm text-gray-600">Université / Industrie</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Committees — TWO COLUMNS */}
-        <section id="committees" className="container mx-auto px-4 py-10 bg-white border-y">
-          <h2 className="text-2xl font-bold">Comités de la journée</h2>
-          <div className="mt-6 grid md:grid-cols-2 gap-6">
-            <div className="rounded-lg border p-6">
-              <h3 className="font-semibold mb-3">Comité scientifique</h3>
-              <p className="text-sm text-gray-600 mb-3">Membres experts du LISA et partenaires académiques.</p>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>Pr. Zakaria CHALH</li>
-                <li>Pr. Yassine CHAIBI</li>
-                <li>Pr. Hassane MOUSTABCHIR</li>
-                <li>Pr. Hicham HIHI</li>
-                <li>Pr. Mhamed SAYYOURI</li>
-                <li>Pr. Mohamed Ouahi</li>
-                <li>Pr. Souad ELKHATTABI</li>
-                <li>Pr. El Mehdi MELLOULI</li>
-                <li>Pr. Lahcen Oughdir</li>
-                <li>Pr. Jamila ELHAINI</li>
-                <li>Pr. Fatima Zahra FEKAK</li>
-                <li>Mme Salma OUHAIBI</li>
-              </ul>
-            </div>
-
-            <div className="rounded-lg border p-6">
-              <h3 className="font-semibold mb-3">Comité d'organisation</h3>
-              <p className="text-sm text-gray-600 mb-3">Équipe en charge de l'organisation pratique et logistique de la journée.</p>
-              <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>Pr. Zakaria CHALH — Président du comité</li>
-                <li>Mme Sohayla EL OUARDI — Responsable communication</li>
-                <li>Mme Salima Handa — Coordination logistique</li>
-                <li>Mme Zineb Tadlaoui — Relations participants</li>
-                <li>Doctorants &amp; jeunes enseignants du LISA</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Calls */}
-        <section id="calls" className="container mx-auto px-4 py-10">
-          <div className="max-w-4xl mx-auto bg-white border rounded-lg p-6">
-            <h2 className="text-2xl font-bold">Appel à communications & posters</h2>
-            <div className="mt-4 grid lg:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-semibold">Thématiques</h3>
-                <ul className="mt-2 list-disc list-inside text-sm text-gray-700 space-y-1">
-                  <li>Contrôle avancé, optimisation, estimation</li>
-                  <li>Mécatronique, robotique, modélisation</li>
-                  <li>Énergies renouvelables, hydrogène, stockage</li>
-                  <li>Génie industriel, qualité, maintenance</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold">Dates clés (exemple)</h3>
-                <ul className="mt-2 list-disc list-inside text-sm text-gray-700 space-y-1">
-                  <li>Dépôt résumé : JJ/MM/AAAA</li>
-                  <li>Notification : JJ/MM/AAAA</li>
-                  <li>Version finale : JJ/MM/AAAA</li>
-                </ul>
-                <a href="#register" className="inline-block mt-4 rounded-lg bg-indigo-600 px-4 py-2 text-white font-semibold">Déposer / S'inscrire</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Info */}
-        <section id="info" className="container mx-auto px-4 py-10 bg-white">
-          <div className="max-w-4xl mx-auto grid lg:grid-cols-3 gap-6">
-            <div className="rounded-lg border p-4">
-              <h3 className="font-semibold">Lieu</h3>
-              <p className="text-sm text-gray-700 mt-2">ENSA Fès — USMBA<br/>Avenue Ahmed Ben Zekri, Fès</p>
-            </div>
-            <div className="rounded-lg border p-4">
-              <h3 className="font-semibold">Accès</h3>
-              <p className="text-sm text-gray-700 mt-2">Parking sur site. Taxis / bus à proximité.</p>
-            </div>
-            <div className="rounded-lg border p-4">
-              <h3 className="font-semibold">Hébergement</h3>
-              <p className="text-sm text-gray-700 mt-2">Liste d'hôtels partenaires (à compléter).</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Register */}
-        <section id="register" className="container mx-auto px-4 py-10 bg-indigo-50/50 border-y text-center">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold">Inscription</h2>
-            <p className="mt-3 text-gray-700">Pour vous inscrire, envoyez un mail à <strong>lisa.contact@usmba.ac.ma</strong> ou utilisez le formulaire Google Form (à ajouter).</p>
-            <div className="mt-4 flex justify-center gap-3">
-              <a href="#" className="rounded-lg bg-indigo-600 px-5 py-3 text-white font-semibold">Ouvrir le formulaire</a>
-              <a href="mailto:lisa.contact@usmba.ac.ma" className="rounded-lg px-5 py-3 border font-semibold">Envoyer par e‑mail</a>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact */}
-        <section id="contact" className="container mx-auto px-4 py-10">
-          <div className="max-w-3xl mx-auto bg-white border rounded-lg p-6">
-            <h2 className="text-2xl font-bold">Contact</h2>
-            <p className="mt-3 text-sm text-gray-600">Organisation : Laboratoire LISA — ENSA Fès<br/>Email : <a href="mailto:lisa.contact@usmba.ac.ma">lisa.contact@usmba.ac.ma</a></p>
-            <form className="mt-6 grid grid-cols-1 gap-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <input className="w-full rounded-lg border px-4 py-3" placeholder="Nom complet" />
-                <input className="w-full rounded-lg border px-4 py-3" placeholder="E‑mail" type="email" />
-              </div>
-              <input className="w-full rounded-lg border px-4 py-3" placeholder="Sujet" />
-              <textarea className="w-full rounded-lg border px-4 py-3 h-32" placeholder="Votre message…" />
-              <div className="flex items-center justify-between">
-                <label className="inline-flex items-center gap-2 text-sm text-gray-600"><input type="checkbox" className="rounded border-gray-300"/> Recevoir les mises à jour par e‑mail</label>
-                <button type="button" className="rounded-lg bg-gray-900 text-white px-5 py-3 font-semibold">Envoyer</button>
-              </div>
-            </form>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="py-10 bg-white border-t">
-        <div className="footer-inner container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div>
-              <img src="/assets/images/sidi-mohammed-logo.webp" alt="Logo" className="h-14 rounded-md" />
-              <p className="small text-sm mt-2">Laboratoire LISA — ENSA Fès<br/>Organisation : lisa.contact@usmba.ac.ma</p>
-            </div>
-
-            <div className="grid-3 flex-1 flex justify-between">
-              <div>
-                <h4 className="text-sm font-semibold mb-2">Liens rapides</h4>
-                <ul className="small" style={{listStyle:'none',padding:0,margin:0}}>
-                  <li><a href="#program" className="text-sm text-indigo-600">Programme</a></li>
-                  <li><a href="#speakers" className="text-sm text-indigo-600">Intervenants</a></li>
-                  <li><a href="#committees" className="text-sm text-indigo-600">Comités</a></li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold mb-2">Contact</h4>
-                <p className="small text-sm">lisa.contact@usmba.ac.ma</p>
-                <p className="small text-sm mt-2">© {new Date().getFullYear()} LISA — ENSA Fès</p>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-semibold mb-2">Adresse</h4>
-                <p className="small text-sm">ENSA Fès — Université Sidi Mohammed Ben Abdellah</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <a class="cta" href="#register">S'inscrire</a>
     </div>
-  );
-}
+  </header>
+
+  <main class="container">
+
+    <!-- Home / Hero -->
+    <section id="home" class="hero" aria-labelledby="home-title">
+      <div>
+        <h1 id="home-title">Journée de recherche — Hommage au Pr. Mohamed Alfidi</h1>
+        <p style="margin-top:12px">Une journée dédiée à la mémoire d’un enseignant-chercheur engagé — discours, hommage et exposition de posters par les doctorants du laboratoire LISA.</p>
+        <p style="margin-top:12px"><a class="cta" href="#program">Voir le programme</a></p>
+      </div>
+      <div>
+        <img src="assets/images/Ensa-photo.jpeg" alt="ENSA Fès" onerror="imgFallback(this)">
+      </div>
+    </section>
+
+    <!-- Actualités -->
+    <section style="margin-top:20px">
+      <div class="card">
+        <h3 style="margin-top:0">Actualités</h3>
+        <p class="small">La journée aura lieu à l'ENSA Fès — détails du programme disponibles sur la page dédiée.</p>
+      </div>
+    </section>
+
+    <!-- Intervenants à la une -->
+    <section style="margin-top:18px">
+      <div class="card">
+        <h3 style="margin-top:0">Intervenants à la une</h3>
+        <div style="display:flex;gap:12px;align-items:center;margin-top:8px">
+          <img src="assets/images/alfidi.jpg" alt="Pr Alfidi" style="width:76px;height:76px;object-fit:cover;border-radius:8px" onerror="imgFallback(this)">
+          <div><strong>Pr. Zakaria CHALH</strong><br><span class="small">Professeur — ENSA Fès</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programme -->
+    <section id="program" style="margin-top:22px">
+      <h2>Programme de la journée</h2>
+      <div class="card" style="margin-top:12px">
+        <pre>
+08h30 – 09h00 : Accueil et inscription des participants (remise des badges)
+09h00 – 09h45 : Cérémonie d'ouverture (allocutions officielles et mot de la famille)
+09h45 – 10h30 : Session plénière – Héritage scientifique et humain (parcours et témoignages)
+10h30 – 11h00 : Pause café & networking
+11h00 – 12h30 : Session scientifique – présentations orales des doctorants (posters)
+12h30 – 14h30 : Déjeuner convivial
+14h30 – 16h00 : Exposition des résumés doctoraux (présentations du LISA)
+16h00 – 16h30 : Séance d'hommage et remise des distinctions (projection et remise plaque)
+16h30 – 17h00 : Clôture & cocktail d'honneur
+        </pre>
+      </div>
+    </section>
+
+    <!-- Intervenants -->
+    <section id="speakers" style="margin-top:22px">
+      <h2>Intervenants</h2>
+      <div class="card" style="margin-top:12px">
+        <p class="small">Cliquez sur un intervenant pour voir le profil.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px">
+          <div class="card" style="padding:12px">
+            <img src="assets/images/alfidi.jpg" alt="Pr" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="imgFallback(this)">
+            <h4 style="margin-bottom:6px">Pr. Zakaria CHALH</h4>
+            <p class="small">Professeur — ENSA Fès<br><a href="https://scholar.google.com/citations?user=LLft2LYAAAAJ&hl=fr" target="_blank">Google Scholar</a></p>
+          </div>
+
+          <div class="card" style="padding:12px">
+            <img src="assets/images/prof-placeholder.jpg" alt="Pr" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="imgFallback(this)">
+            <h4 style="margin-bottom:6px">Pr. Nabil EL AKCHIOUI</h4>
+            <p class="small">Professeur — ENSA Fès</p>
+          </div>
+
+          <div class="card" style="padding:12px">
+            <img src="assets/images/prof-placeholder.jpg" alt="Pr" style="width:100%;height:140px;object-fit:cover;border-radius:8px" onerror="imgFallback(this)">
+            <h4 style="margin-bottom:6px">Pr. Mohamed BENDAOUD</h4>
+            <p class="small">Professeur — ENSA Fès</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comités (deux colonnes) -->
+    <section id="committees" style="margin-top:22px">
+      <h2>Comités de la journée</h2>
+      <div class="card" style="background:#eef2ff;padding:16px;margin-top:12px;border-radius:12px">
+        <div class="comm-grid">
+          <div>
+            <h3 style="margin-top:0;font-size:18px">Comité scientifique</h3>
+            <p class="small">Membres experts du LISA et partenaires académiques.</p>
+            <ul style="margin-top:8px">
+              <li>Pr. Zakaria CHALH</li>
+              <li>Pr. Yassine CHAIBI</li>
+              <li>Pr. Hassane MOUSTABCHIR</li>
+              <li>Pr. Hicham HIHI</li>
+              <li>Pr. Mhamed SAYYOURI</li>
+              <li>Pr. Mohamed Ouahi</li>
+              <li>Pr. Souad ELKHATTABI</li>
+              <li>Pr. El Mehdi MELLOULI</li>
+              <li>Pr. Lahcen Oughdir</li>
+              <li>Pr. Jamila ELHAINI</li>
+              <li>Pr. Fatima Zahra FEKAK</li>
+              <li>Mme Salma OUHAIBI</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 style="margin-top:0;font-size:18px">Comité d’organisation</h3>
+            <p class="small">Équipe en charge de l'organisation pratique et logistique de la journée.</p>
+            <ul style="margin-top:8px">
+              <li>Pr. Zakaria CHALH — Président du comité</li>
+              <li>Mme Sohayla EL OUARDI — Responsable communication</li>
+              <li>Mme Salima Handa — Coordination logistique</li>
+              <li>Mme Zineb Tadlaoui — Relations participants</li>
+              <li>Doctorants &amp; jeunes enseignants du LISA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appels -->
+    <section id="calls" style="margin-top:22px">
+      <h2>Appel à communications & posters</h2>
+      <div class="card" style="margin-top:12px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <h3>Thématiques</h3>
+            <ul>
+              <li>Contrôle avancé, optimisation, estimation</li>
+              <li>Mécatronique, robotique, modélisation</li>
+              <li>Énergies renouvelables, hydrogène, stockage</li>
+              <li>Génie industriel, qualité, maintenance</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Dates clés (exemple)</h3>
+            <ul>
+              <li>Dépôt résumé : JJ/MM/AAAA</li>
+              <li>Notification : JJ/MM/AAAA</li>
+              <li>Version finale : JJ/MM/AAAA</li>
+            </ul>
+            <p style="margin-top:8px"><a class="cta" href="#register">Déposer / S'inscrire</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infos pratiques -->
+    <section id="info" style="margin-top:22px">
+      <h2>Infos pratiques</h2>
+      <div class="card" style="margin-top:12px">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <div>
+            <h4>Lieu</h4>
+            <p>ENSA Fès — USMBA<br>Avenue Ahmed Ben Zekri, Fès</p>
+          </div>
+          <div>
+            <h4>Accès</h4>
+            <p>Parking sur site. Taxis / bus à proximité.</p>
+          </div>
+          <div>
+            <h4>Hébergement</h4>
+            <p>Liste d'hôtels partenaires (à compléter).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inscription -->
+    <section id="register" style="margin-top:22px">
+      <h2>Inscription</h2>
+      <div class="card" style="margin-top:12px;background:#f8fafc">
+        <p>Pour vous inscrire, envoyez un mail à <strong>lisa.contact@usmba.ac.ma</strong> ou utilisez le formulaire Google Form (à ajouter).</p>
+        <p style="margin-top:12px"><a class="cta" href="https://forms.gle/">Ouvrir le formulaire</a> <a href="mailto:lisa.contact@usmba.ac.ma" style="margin-left:12px">Envoyer par e‑mail</a></p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="margin-top:22px">
+      <h2>Contact</h2>
+      <div class="card" style="margin-top:12px">
+        <p>Organisation : Laboratoire LISA — ENSA Fès<br>Email : <a href="mailto:lisa.contact@usmba.ac.ma">lisa.contact@usmba.ac.ma</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner container" style="display:flex;gap:24px;align-items:flex-start;justify-content:space-between">
+      <div style="max-width:520px">
+        <img src="assets/images/sidi-mohammed-logo.webp" alt="Logo" style="height:56px;border-radius:6px" onerror="imgFallback(this)">
+        <p class="small" style="margin-top:12px">Laboratoire LISA — ENSA Fès<br>Organisation : lisa.contact@usmba.ac.ma</p>
+      </div>
+
+      <div class="grid-3" style="flex:1;display:flex;justify-content:space-between">
+        <div>
+          <h4 style="margin:0 0 8px 0;color:#111">Liens rapides</h4>
+          <ul class="small" style="list-style:none;padding:0;margin:0">
+            <li><a href="#program" style="color:#4f46e5">Programme</a></li>
+            <li><a href="#speakers" style="color:#4f46e5">Intervenants</a></li>
+            <li><a href="#committees" style="color:#4f46e5">Comités</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="margin:0 0 8px 0;color:#111">Contact</h4>
+          <p class="small" style="margin:0">lisa.contact@usmba.ac.ma</p>
+          <p class="small" style="margin-top:8px">© 2025 LISA — ENSA Fès</p>
+        </div>
+
+        <div>
+          <h4 style="margin:0 0 8px 0;color:#111">Adresse</h4>
+          <p class="small" style="margin:0">ENSA Fès — Université Sidi Mohammed Ben Abdellah</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle (simple)
+    (function(){
+      const header = document.querySelector('header');
+      const btn = document.createElement('button');
+      btn.setAttribute('aria-label','Ouvrir le menu');
+      btn.style.display = 'none';
+      // show on small screens
+      function updateToggle(){
+        if(window.innerWidth <= 900){
+          btn.style.display = 'inline-block';
+        } else { btn.style.display = 'none'; }
+      }
+      btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      btn.onclick = function(){
+        const ul = document.querySelector('nav ul');
+        if(!ul) return;
+        if(ul.style.display === 'flex' || ul.style.display === 'block'){
+          ul.style.display = 'none';
+          btn.setAttribute('aria-label','Ouvrir le menu');
+        } else {
+          ul.style.display = (window.innerWidth<=900)?'block':'flex';
+          btn.setAttribute('aria-label','Fermer le menu');
+        }
+      };
+      header.appendChild(btn);
+      window.addEventListener('resize', updateToggle);
+      updateToggle();
+
+      // Intersection observer for active nav link highlighting
+      const navLinks = Array.from(document.querySelectorAll('nav a'));
+      const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      if('IntersectionObserver' in window && sections.length){
+        const obs = new IntersectionObserver((entries)=>{
+          const visible = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+          if(visible){
+            navLinks.forEach(a=>a.classList.remove('active'));
+            const sel = document.querySelector('nav a[href="#'+visible.target.id+'"]');
+            if(sel) sel.classList.add('active');
+          }
+        },{threshold:[0.25,0.5,0.75]});
+        sections.forEach(s=>obs.observe(s));
+      }
+    })();
+
+    function imgFallback(img){
+      if(img.dataset.failed) return;
+      img.dataset.failed = '1';
+      img.src = 'https://images.unsplash.com/photo-1530023367847-a683933f4171?q=80&w=1200&auto=format&fit=crop';
+    }
+  </script>
+</body>
+</html>
