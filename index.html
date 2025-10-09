@@ -376,8 +376,7 @@
             </div>
         </div>
     </section>
-
- <!-- Program Section -->
+<!-- Program Section -->
     <section id="program" class="py-14 bg-white border-y">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl sm:text-3xl font-bold">Programme prévisionnel</h2>
@@ -386,45 +385,70 @@
                 <div class="rounded-2xl border border-gray-200 p-6 bg-gray-50 shadow-md">
                     <h3 class="font-bold text-2xl text-blue-700 border-b pb-2 mb-4">Matinée (Hommage & Plénière)</h3>
                     <ul class="mt-3 space-y-4 text-base">
-                        <li class="program-item"><strong>08:30</strong> <span>Accueil des participants & Enregistrement</span></li>
+                        <li class="program-item"><strong>08:30</strong> <span class="program-details">Accueil des participants & Enregistrement</span></li>
+                        
+                        <!-- Bloc Ouverture Officielle (avec ligne bleue et hiérarchie de texte) -->
                         <li class="program-item">
                             <strong>09:00</strong> 
-                            <div class="flex flex-col">
+                            <div class="program-details flex flex-col">
                                 <span class="font-bold text-gray-900 mb-2">Ouverture officielle</span>
-                                <div class="speaker-list">
-                                    <div class="mb-3">
+                                <div class="speaker-list-container">
+                                    
+                                    <!-- Intervenant 1 -->
+                                    <div>
+                                        <!-- Utilise les classes speaker-title (text-sm, bold) -->
                                         <span class="speaker-title">Pr. Mustapha IJJAALI</span>
-                                        <span class="speaker-role text-xs">Président de l'Université Sidi Mohamed Ben Abdellah</span>
+                                        <!-- Utilise les classes speaker-role (text-xs) -->
+                                        <span class="speaker-role">Président de l'Université Sidi Mohamed Ben Abdellah</span>
                                     </div>
-                                    <div class="mb-3">
+                                    
+                                    <!-- Intervenant 2 -->
+                                    <div>
                                         <span class="speaker-title">Pr. Abderrahim LAHRACH</span>
-                                        <span class="speaker-role text-xs">Directeur de l'École Nationale des Sciences Appliquées de Fès</span>
+                                        <span class="speaker-role">Directeur de l'École Nationale des Sciences Appliquées de Fès</span>
                                     </div>
+                                    
+                                    <!-- Intervenant 3 -->
                                     <div>
                                         <span class="speaker-title">Pr. Hassane MOUSTABCHIR</span>
-                                        <span class="speaker-role text-xs">Directeur du Laboratoire d'Ingénierie, Systèmes, et Applications (LISA)</span>
+                                        <span class="speaker-role" style="margin-bottom: 0;">Directeur du Laboratoire d'Ingénierie, Systèmes, et Applications (LISA)</span>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="program-item"><strong>09:30</strong> <span>Pr. Zakaria Chalh (Projection hommage)</span></li>
-                        <li class="program-item"><strong>10:30</strong> <span>Conférence plénière invitée (Axée sur les travaux du Pr. Alfidi)</span></li>
-                        <li class="program-item"><strong>11:30</strong> <span>Pause-café & Session Posters</span></li>
+                        
+                        <!-- Fin du Bloc Ouverture Officielle -->
+
+                        <li class="program-item"><strong>09:30</strong> <span class="program-details">Pr. Zakaria Chalh (Projection hommage)</span></li>
+                        
+                        <!-- Conférence Plénière MODIFIÉE pour que la description soit EN LIGNE -->
+                        <li class="program-item">
+                            <strong>10:30</strong> 
+                            <span class="program-details">
+                                <span class="font-bold text-gray-900">Conférence plénière invitée</span>
+                                <!-- La classe 'small-description' ne force plus de retour à la ligne -->
+                                <span class="small-description">&nbsp;(Axée sur les travaux du Pr. Alfidi)</span>
+                            </span>
+                        </li>
+                        
+                        <li class="program-item"><strong>11:30</strong> <span class="program-details">Pause-café & Session Posters</span></li>
                     </ul>
                 </div>
                 <div class="rounded-2xl border border-gray-200 p-6 bg-gray-50 shadow-md">
                     <h3 class="font-bold text-2xl text-gray-700 border-b pb-2 mb-4">Après‑midi (Scientifique & Clôture)</h3>
                     <ul class="mt-3 space-y-4 text-base">
-                        <li class="program-item"><strong>14:00</strong> <span>Sessions de communications orales parallèles</span></li>
-                        <li class="program-item"><strong>16:00</strong> <span>Table ronde </span></li>
-                        <li class="program-item"><strong>17:00</strong> <span>Clôture & Remise de la plaque commémorative aux proches</span></li>
-                        <li class="program-item"><strong>17:15</strong> <span>Lecture de la Fatiha & Moment de recueillement</span></li>
-                        <li class="program-item"><strong>17:30</strong> <span>Cocktail de clôture</span></li>
+                        <li class="program-item"><strong>14:00</strong> <span class="program-details">Sessions de communications orales parallèles</span></li>
+                        <li class="program-item"><strong>16:00</strong> <span class="program-details">Table ronde : Héritage, Rôle du LISA & Perspectives d'avenir</span></li>
+                        <li class="program-item"><strong>17:00</strong> <span class="program-details">Clôture & Remise de la plaque commémorative aux proches</span></li>
+                        <li class="program-item"><strong>17:15</strong> <span class="program-details">Lecture de la Fatiha & Moment de recueillement</span></li>
+                        <li class="program-item"><strong>17:30</strong> <span class="program-details">Cocktail de clôture</span></li>
                     </ul>
                 </div>
             </div>
-    </section>
 
+            <p class="mt-6 text-sm text-gray-500 text-center">*Le programme détaillé sera communiqué après validation du comité scientifique. L'horaire est sujet à de légères modifications.</p>
+        </div>
+    </section>
     <!-- Speakers Section -->
     <section id="speakers" class="py-14 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
