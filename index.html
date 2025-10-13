@@ -580,25 +580,35 @@
                      <!-- Liens de téléchargement MIS À JOUR avec les noms de fichiers GitHub -->
                     <p class="mt-4 text-xs font-semibold text-gray-600 border-t pt-2">Téléchargement des Templates :</p>
                     <div class="flex flex-col gap-2 mt-2">
-                        <!-- Lien pour le fichier Word (Journee_Template_Word.docx) -->
+                     <!-- LIEN CORRIGÉ pour Journee_Template_Word.docx -->
                         <a 
-                            href="Journée_Template_Word.docx" 
+                            href="https://raw.githubusercontent.com/LisaMemorialDay/scientific/main/Journee_Template_Word.docx" 
                             download 
                             class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-medium transition duration-200 p-2 rounded-lg bg-blue-100/50 hover:bg-blue-100"
                         >
                             <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 15h8M8 19h8M8 11h8"/></svg>
                             Template Résumé (DOCX)
                         </a>
-                        <!-- Lien pour le fichier PowerPoint (Journée_template_pptx.pptx) -->
+
+                        <!-- NOUVEAU LIEN pour Journée_Template_latex.tex -->
                         <a 
-                            href="Journée_Template_ppt.pptx" 
+                            href="https://raw.githubusercontent.com/LisaMemorialDay/scientific/main/Journ%C3%A9e_Template_latex.tex" 
+                            download 
+                            class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-medium transition duration-200 p-2 rounded-lg bg-blue-100/50 hover:bg-blue-100"
+                        >
+                            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 15h8M8 19h8M8 11h8"/><text x="12" y="16" font-family="Verdana" font-size="10" fill="currentColor" text-anchor="middle" font-weight="bold">$\Sigma$</text></svg>
+                            Template Résumé (LaTeX)
+                        </a>
+
+                        <!-- LIEN CORRIGÉ pour Journée_template_pptx.pptx -->
+                        <a 
+                            href="https://raw.githubusercontent.com/LisaMemorialDay/scientific/main/Journ%C3%A9e_template_pptx.pptx" 
                             download 
                             class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-medium transition duration-200 p-2 rounded-lg bg-blue-100/50 hover:bg-blue-100"
                         >
                             <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18V12m-3 3h6"/></svg>
                             Template Poster (PPTX)
-        
-                    </a
+                        </a>
                 </div>
             </div>
         </div>
@@ -612,31 +622,20 @@
                 L'inscription est gratuite mais obligatoire pour toute participation. 
                 Veuillez choisir le formulaire approprié si vous souhaitez soumettre un résumé (oral) ou un poster (affichage).
             </p>
-            <div class="mt-10 grid md:grid-cols-2 gap-6 justify-center max-w-2xl mx-auto">
-                <!-- Soumission Résumé (Oral) -->
+                   <div class="mt-10 flex justify-center">
+                <!-- Bouton unique pour la Soumission et l'Inscription -->
                 <a 
-                    href="https://forms.gle/RESUME_FORM_LINK" 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdenvUPHPiAswUL0kB8Junzc4bSCQoJdsGAwnO2GW6YLg6_6w/viewform?usp=dialog" 
                     target="_blank" 
                     rel="noreferrer" 
-                    class="rounded-xl bg-blue-700 px-6 py-4 text-lg text-white font-bold shadow-xl shadow-blue-400/60 hover:bg-blue-800 transition duration-300 transform hover:scale-[1.02] flex flex-col items-center"
+                    class="w-full max-w-sm rounded-xl bg-blue-700 px-8 py-4 text-xl text-white font-bold shadow-xl shadow-blue-400/60 hover:bg-blue-800 transition duration-300 transform hover:scale-[1.02] flex flex-col items-center"
                 >
-                    <span class="text-2xl mb-1">📝</span>
-                    Soumettre un Résumé
-                    <span class="text-sm font-normal mt-1">(Communication Orale)</span>
+                    <span class="text-2xl mb-1">✍️</span>
+                    Soumission
+                    <span class="text-sm font-normal mt-1">(Résumé, Poster ou Participation)</span>
                 </a>
                 
-                <!-- Soumission Poster -->
-                <a 
-                    href="https://forms.gle/POSTER_FORM_LINK" 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    class="rounded-xl bg-blue-600/80 px-6 py-4 text-lg text-white font-bold shadow-lg shadow-blue-400/50 hover:bg-blue-700 transition duration-300 transform hover:scale-[1.02] flex flex-col items-center"
-                >
-                    <span class="text-2xl mb-1">🖼️</span>
-                    Soumettre un Poster
-                    <span class="text-sm font-normal mt-1">(Session Affichage)</span>
-                </a>
-            </div>                              
+            </div>   
       </div>
     </section>
 
