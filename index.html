@@ -18,6 +18,56 @@
             background-color: #DBEAFE; /* light blue */
             font-weight: 700;
         }
+                /* Styles de la grille du programme (AJOUTÉ POUR LA STRUCTURE) */
+        .program-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            text-align: left;
+        }
+        .program-item > strong {
+            flex-shrink: 0;
+            color: #1E3A8A; /* Dark blue for time */
+            font-size: 1.125rem; /* Taille de l'heure */
+            min-width: 60px; /* Aligner l'heure sur la gauche */
+            font-weight: 700;
+        }
+        
+        /* Styles spécifiques pour l'Ouverture Officielle (Ligne bleue et hiérarchie de texte) */
+        .program-details {
+            flex-grow: 1; /* Permet au contenu de prendre l'espace restant */
+        }
+        
+        .speaker-list-container {
+            /* Crée la ligne bleue verticale (pipe) */
+            border-left: 3px solid #93C5FD; /* light blue border */
+            padding-left: 1rem; /* Espace après la ligne bleue */
+            margin-top: 4px; /* Petit espacement visuel */
+        }
+
+        /* Nom du Professeur: text-sm (plus petit que le texte normal, mais plus grand que le rôle) */
+        .speaker-title {
+            font-weight: 700; /* Bold */
+            color: #1F2937; /* Gray 800 */
+            font-size: 0.875rem; /* text-sm */
+            display: block; /* Force le retour à la ligne après le nom */
+            line-height: 1.4;
+        }
+        
+        /* Rôle/Désignation: text-xs (plus petit que le nom) */
+        .speaker-role {
+            font-size: 0.75rem; /* text-xs */
+            color: #4B5563; /* Gray 600 */
+            margin-bottom: 12px; /* Espace entre les intervenants */
+            display: block;
+            line-height: 1.4;
+        }
+        
+        /* Texte descriptif en petite taille (pour la conférence plénière) */
+        .small-description {
+            font-size: 0.75rem; /* text-xs */
+            color: #4B5563; /* Gray 600 */
+        }
     </style>
     <script>
         tailwind.config = {
