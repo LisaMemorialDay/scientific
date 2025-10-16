@@ -716,20 +716,26 @@
             </div>
         </div>
     </section>
-    <!-- Contact Section -->
+       <!-- Contact Section -->
     <section id="contact" class="py-14">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl sm:text-3xl font-bold">Contactez le comité d'organisation</h2>
-            <form class="mt-6 grid grid-cols-1 gap-4 bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+            <!-- L'ACTION DU FORMULAIRE EST MAINTENANT CONFIGURÉE POUR FORMSpree avec l'ID fourni ! -->
+            <form action="https://formspree.io/f/mzzjywra" method="POST" class="mt-6 grid grid-cols-1 gap-4 bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
                 <div class="grid sm:grid-cols-2 gap-4">
-                    <input class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-blue-500 focus:border-blue-500" placeholder="Nom complet" required />
-                    <input class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-blue-500 focus:border-blue-500" placeholder="E‑mail" type="email" required />
+                    <!-- Champ Nom -->
+                    <input name="Nom" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-blue-500 focus:border-blue-500" placeholder="Nom complet" required />
+                    <!-- Champ E-mail (avec name="_replyto" pour que vous puissiez répondre) -->
+                    <input name="_replyto" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-blue-500 focus:border-blue-500" placeholder="E‑mail" type="email" required />
                 </div>
-                <input class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-blue-500 focus:border-blue-500" placeholder="Sujet" required />
-                <textarea class="w-full rounded-xl border border-gray-300 px-4 py-3 h-32 focus:ring-blue-500 focus:border-blue-500" placeholder="Votre message…" required></textarea>
+                <!-- Champ Sujet -->
+                <input name="Sujet" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-blue-500 focus:border-blue-500" placeholder="Sujet" required />
+                <!-- Champ Message -->
+                <textarea name="Message" class="w-full rounded-xl border border-gray-300 px-4 py-3 h-32 focus:ring-blue-500 focus:border-blue-500" placeholder="Votre message…" required></textarea>
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-2">
                     <label class="text-sm text-gray-600 inline-flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                        <!-- Champ Checkbox pour l'option de mise à jour -->
+                        <input type="checkbox" name="Updates_Opt_In" value="Oui" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
                         Recevoir les mises à jour par e‑mail
                     </label>
                     <button 
@@ -742,7 +748,6 @@
             </form>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="py-12 bg-blue-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
