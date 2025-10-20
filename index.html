@@ -397,7 +397,7 @@
         </div>
     </section>
 
-    <!-- About Section -->
+   <!-- About Section (MODIFIÉ) -->
     <section id="about" class="py-14">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl sm:text-3xl font-bold">À propos de la Journée</h2>
@@ -405,25 +405,32 @@
                 Cette journée rend hommage au Pr. Mohamed Alfidi, enseignant-chercheur d'exception et co‑fondateur du Laboratoire LISA. 
                 Son apport aux domaines du contrôle avancé, du génie électrique et de l'ingénierie des systèmes a marqué des générations d'étudiants et de chercheurs.
             </p>
-            <div class="mt-6 grid sm:grid-cols-2 gap-6">
-                <div class="rounded-2xl bg-white border border-blue-100 p-6 shadow-lg">
-                    <h3 class="font-semibold text-xl text-blue-700 mb-2">Objectifs</h3>
-                    <ul class="mt-2 list-disc list-inside text-gray-700 space-y-2">
-                        <li>Honorer son héritage scientifique, pédagogique et humain.</li>
-                        <li>Valoriser les travaux actuels du LISA dans ses axes phares.</li>
-                        <li>Renforcer les collaborations académiques et industrielles.</li>
-                    </ul>
-                </div>
-                <!-- AXES SCIENTIFIQUES DE LISA MIS À JOUR -->
-                <div class="rounded-2xl bg-white border border-gray-200 p-6 shadow-lg">
-                    <h3 class="font-semibold text-xl text-gray-700 mb-2">Axes scientifiques de LISA</h3>
-                    <ul class="mt-2 list-disc list-inside text-gray-700 space-y-2">
+
+            <!-- Objectifs (Pleine largeur) -->
+            <div class="mt-6 rounded-2xl bg-white border border-blue-100 p-6 shadow-lg">
+                <h3 class="font-semibold text-xl text-blue-700 mb-2">Objectifs</h3>
+                <ul class="mt-2 list-disc list-inside text-gray-700 space-y-2">
+                    <li>Honorer son héritage scientifique, pédagogique et humain.</li>
+                    <li>Valoriser les travaux actuels du LISA dans ses axes phares.</li>
+                    <li>Renforcer les collaborations académiques et industrielles.</li>
+                </ul>
+            </div>
+            
+            <!-- Axes scientifiques de LISA (Deux colonnes) -->
+            <div class="mt-6 rounded-2xl bg-white border border-gray-200 p-6 shadow-lg">
+                <h3 class="font-semibold text-xl text-gray-700 mb-4">Axes scientifiques de LISA</h3>
+                <!-- Utilisation de la classe 'columns-2' de Tailwind pour diviser la liste en deux colonnes -->
+                <div class="columns-1 md:columns-2 gap-x-8 space-y-2 text-sm text-gray-700">
+                    <ul class="list-disc list-inside space-y-2">
                         <li>Industrie 4.0, robotique, automatique et cobotique</li>
                         <li>Management de la qualité et cycle de vie des produits</li>
                         <li>Génie énergétique, Énergies renouvelables et développement durable</li>
                         <li>Modélisation et conception des systèmes</li>
                         <li>Développement de méthodes numériques pour la mécanique et la thermique des matériaux</li>
                         <li>Conception de nouveaux méta-matériaux et optimisation de leurs propriétés pour des applications avancées</li>
+                        <!-- Colonne 1 fin -->
+                    </ul>
+                    <ul class="list-disc list-inside space-y-2">
                         <li>Étude de l'efficacité énergétique des bâtiments et intégration des énergies renouvelables</li>
                         <li>Maintenance industrielle et impact mécanique sur les structures</li>
                         <li>Modélisation des Systèmes Industriels</li>
@@ -433,6 +440,7 @@
                         <li>Cybersécurité - Traitement d’Images</li>
                         <li>Commande intelligente des systèmes autonomes</li>
                         <li>Computer vision, signaux, systèmes et intelligence</li>
+                        <!-- Colonne 2 fin -->
                     </ul>
                 </div>
             </div>
